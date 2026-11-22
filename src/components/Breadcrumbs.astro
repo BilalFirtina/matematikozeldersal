@@ -1,0 +1,27 @@
+---
+interface BreadcrumbItem {
+  name: string;
+  path?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const allItems = [{ name: 'Ana Sayfa', path: '/' }, ...items];
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {allItems.map((item, index) => (
+      <li>
+        {item.path && index < allItems.length - 1 ? (
+          <a href={item.path}>{item.name}</a>
+        ) : (
+          <span aria-current={index === allItems.length - 1 ? 'page' : undefined}>{item.name}</span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { aytFaqs } from '../data/faqs';
+import { webpageSchema, courseSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'AYT Matematik Özel Ders | Adana ve Online | Dilber Öğretmen';
+const description =
+  "AYT matematik özel dersi; ileri konular, uzun soru stratejisi ve hedef bölüme göre plan. Adana'da yüz yüze veya online. Dilber Öğretmen, 10 yıl deneyim.";
+const path = '/ayt-matematik-ozel-ders';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  courseSchema({
+    name: 'AYT matematik özel ders',
+    description:
+      'AYT matematik için birebir ders; ileri konular, uzun soru stratejisi ve hedefe göre plan.',
+    path,
+    mode: 'blended',
+    educationalLevel: '11-12. sınıf ve mezun',
+    teaches: ['AYT matematik', 'İleri matematik', 'Problem çözme', 'Sınav stratejisi'],
+  }),
+  faqSchema(aytFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'AYT Matematik Özel Ders', path },
+  ]),
+];
+
+const facts = [
+  { label: 'Hedef', value: 'AYT matematik' },
+  { label: 'Sınıf', value: '11-12. sınıf ve mezun' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Format', value: 'Adana’da yüz yüze veya online' },
+  { label: 'Odak', value: 'İleri konular + uzun soru stratejisi' },
+  { label: 'Ücret', value: "WhatsApp'tan güncel bilgi" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'AYT Matematik Özel Ders', path }]} />
+      <p class="eyebrow">11-12. sınıf · Mezun</p>
+      <h1>AYT Matematik Özel Ders</h1>
+      <p class="lead">
+        İleri konularda derinleşmek, uzun soruları parçalara ayırmak ve hedef
+        bölüme göre plan yapmak isteyen öğrenciler için AYT matematik desteği.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, AYT matematik özel ders hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#odak">Programı gör</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="AYT ders özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="odak">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>AYT matematikte odak noktaları</h2>
+        <p>
+          AYT matematik, TYT'ye göre daha derin kavram bilgisi ve çok adımlı
+          soru çözme becerisi ister. Bu yüzden derslerde konu anlatımı ile soru
+          pratiği iç içe ilerliyor.
+        </p>
+        <h3>İleri konularda kavramsal derinlik</h3>
+        <p>
+          Fonksiyonlar, polinomlar, ikinci dereceden denklemler, trigonometri,
+          logaritma, diziler, limit, türev ve integral gibi başlıklarda yalnızca
+          formül değil, konunun mantığı da çalışılıyor. Konu eksikleri varsa
+          önce onlar kapatılıyor.
+        </p>
+        <h3>Uzun soru stratejisi</h3>
+        <p>
+          AYT'de uzun soruları parçalara ayırmak, veriyi not almak ve çözümü geri
+          kontrol etmek gerekir. Derslerde bu adımları birlikte uyguluyoruz;
+          öğrenci kendi çözümünü anlatmayı öğreniyor.
+        </p>
+        <h3>Hedef bölüme göre plan</h3>
+        <p>
+          Sayısal hedefi olan öğrenciler için konu önceliği ve deneme stratejisi
+          farklı olabilir. İlk görüşmede hedef bölüm, mevcut net ve konu
+          eksiklerine göre bir yol haritası çıkarıyoruz.
+        </p>
+        <h2>AYT'ye ne zaman başlamalı?</h2>
+        <p>
+          11. sınıfın ikinci dönemi veya 12. sınıfın başı, AYT için sağlıklı bir
+          başlangıç olabilir. Ancak öğrencinin TYT temeli zayıfsa önce TYT
+          eksiklerini kapatmak gerekebilir. Bu kararı birlikte veriyoruz.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Kimler için uygun?</h3>
+        <ul>
+          <li>Sayısal hedefi olan 11-12. sınıf öğrencileri.</li>
+          <li>Mezun olup AYT netini yükseltmek isteyenler.</li>
+          <li>Konuları bilen ama uzun sorularda takılanlar.</li>
+          <li>Hedef bölüme göre öncelik belirlemek isteyenler.</li>
+          <li>Online dersle düzenli takip arayanlar.</li>
+        </ul>
+        <p class="form-note">
+          AYT matematik kapsamı öğrencinin hedef bölümü ve mevcut seviyesine
+          göre planlanır.
+        </p>
+        <a class="btn btn-secondary btn-sm" href="/yontem">Ders yöntemi</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Çalışma düzeni</p>
+        <h2>AYT matematik planı nasıl kurulur?</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Seviye ve hedef</h3>
+          <p>
+            Mevcut net, konu eksikleri ve hedef bölüm netleşir. Öncelik listesi
+            çıkarılır.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Konu + soru dengesi</h3>
+          <p>
+            Her hafta konu tekrarı, örnek soru ve karma test dengesi kurulur.
+            Ödevler düzenli kontrol edilir.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Deneme ve geri bildirim</h3>
+          <p>
+            Deneme sonuçları konu ve soru tipi bazında analiz edilir; plan bir
+            sonraki hafta güncellenir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Veli iletişimi</p>
+        <h2>Süreç nasıl takip ediliyor?</h2>
+        <p class="lead">
+          Ders özetleri WhatsApp'tan paylaşılıyor; aylık raporda konular, ödev
+          durumu ve deneme sonuçları yer alıyor.
+        </p>
+        <p>
+          AYT sürecinde düzenli geri bildirim, öğrencinin hangi konuya ne zaman
+          döneceğini bilmesini sağlıyor. Veliyle kısa ve net iletişim kuruyoruz.
+        </p>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>AYT matematik hakkında</h2>
+      </div>
+      <FaqList faqs={aytFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="AYT matematikte hedefe göre plan yapalım."
+    text="Sınıf, hedef bölüm ve mevcut netinizi yazın; konu önceliği ve ders planını birlikte kuralım."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

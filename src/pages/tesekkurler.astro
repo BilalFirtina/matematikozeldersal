@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site, waLink } from '../data/site';
+
+const title = 'Teşekkürler | Bilgi Talebiniz Alındı';
+const description = 'Bilgi talebiniz alındı. En kısa sürede WhatsApp veya telefonla dönüş yapılacak.';
+---
+
+<BaseLayout title={title} description={description} canonical="/tesekkurler" noindex={true}>
+  <section class="section">
+    <div class="container" style="max-width: 760px;">
+      <p class="eyebrow">Teşekkürler</p>
+      <h1>Mesajınızı aldık.</h1>
+      <p class="lead">
+        En kısa sürede WhatsApp veya telefon üzerinden dönüş yapacağız. Ders
+        sırasında yanıt gecikebilir; dilerseniz doğrudan arayabilirsiniz.
+      </p>
+      <div class="card mt-3">
+        <h2 class="mt-0">Sırada ne var?</h2>
+        <ol>
+          <li>Mesajınızı okuyup sınıf ve hedefi değerlendireceğiz.</li>
+          <li>Uygun ders saati ve formatı (yüz yüze/online) netleştireceğiz.</li>
+          <li>Seviye tespiti ve ders planı için ilk adımı atacağız.</li>
+        </ol>
+        <div class="btn-group mt-3">
+          <a class="btn btn-primary" href={waLink()} target="_blank" rel="noopener">
+            WhatsApp'tan yaz
+          </a>
+          <a class="btn btn-secondary" href={site.phoneHref}>{site.phoneDisplay}</a>
+        </div>
+      </div>
+      <p class="mt-3"><a href="/">Ana sayfaya dön</a></p>
+    </div>
+  </section>
+</BaseLayout>

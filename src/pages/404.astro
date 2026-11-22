@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Sayfa Bulunamadı | Adana Matematik Özel Ders';
+const description = 'Aradığınız sayfa bulunamadı. Ana sayfaya dönerek devam edebilirsiniz.';
+---
+
+<BaseLayout title={title} description={description} canonical="/404" noindex={true}>
+  <section class="section">
+    <div class="container" style="max-width: 760px;">
+      <p class="eyebrow">404</p>
+      <h1>Aradığınız sayfa bulunamadı</h1>
+      <p class="lead">
+        Bağlantı değişmiş veya sayfa kaldırılmış olabilir. Aşağıdaki sayfalardan
+        devam edebilirsiniz.
+      </p>
+      <div class="grid grid-2 mt-3">
+        <a class="district-card" href="/">
+          <strong>Ana sayfa</strong>
+          <span>Adana matematik özel ders</span>
+        </a>
+        <a class="district-card" href="/adana-matematik-ozel-ders">
+          <strong>Adana'da yüz yüze</strong>
+          <span>Seyhan, Çukurova, Yüreğir, Sarıçam</span>
+        </a>
+        <a class="district-card" href="/online-matematik-ozel-ders">
+          <strong>Online ders</strong>
+          <span>Türkiye geneli</span>
+        </a>
+        <a class="district-card" href="/iletisim">
+          <strong>İletişim</strong>
+          <span>WhatsApp ve telefon</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

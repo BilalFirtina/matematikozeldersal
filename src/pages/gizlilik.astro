@@ -1,0 +1,79 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+---
+
+<LegalLayout
+  title="Gizlilik Politikası"
+  description="Adana Matematik Özel Ders - Dilber Öğretmen web sitesi gizlilik politikası."
+  path="/gizlilik"
+>
+  <p>
+    Bu gizlilik politikası, <strong>{site.legalName}</strong> tarafından
+    işletilen web sitesinde bilgilerinizin nasıl toplandığını, kullanıldığını ve
+    korunduğunu açıklar.
+  </p>
+
+  <h2>Toplanan bilgiler</h2>
+  <p>
+    Site üzerinden yalnızca sizin paylaştığınız bilgiler toplanır: ad, telefon,
+    sınıf düzeyi, hedef ve isteğe bağlı not. Form gönderimi WhatsApp mesajına
+    dönüştürülebilir. Ayrıca çerez tercihiniz tarayıcınızda saklanır.
+  </p>
+
+  <h2>Kullanım amaçları</h2>
+  <ul>
+    <li>Bilgi talebinize dönüş yapmak.</li>
+    <li>Ders planlaması ve iletişim kurmak.</li>
+    <li>Siteyi güvenli ve işlevsel tutmak.</li>
+    <li>Açık rızanız varsa anonim kullanım ölçümü yapmak.</li>
+  </ul>
+
+  <h2>Bilgi paylaşımı</h2>
+  <p>
+    Kişisel bilgileriniz satılmaz, kiralanmaz veya pazarlama amacıyla üçüncü
+    kişilerle paylaşılmaz. Barındırma, e-posta, WhatsApp veya ölçümleme gibi
+    hizmet sağlayıcıları yalnızca hizmetin gerektirdiği ölçüde veri işleyebilir.
+    Yasal bir zorunluluk olması halinde yetkili kurumlarla paylaşım yapılabilir.
+  </p>
+
+  <h2>Güvenlik</h2>
+  <p>
+    Site HTTPS üzerinden yayınlanır. Form ve iletişim bilgileri, yetkisiz
+    erişimi önlemek için makul teknik ve idari önlemlerle korunur. Ancak
+    internet üzerinden hiçbir iletimin yüzde yüz güvenli olduğu garanti
+    edilemez.
+  </p>
+
+  <h2>Üçüncü taraf bağlantılar</h2>
+  <p>
+    Site; WhatsApp, Google Maps veya Google yorumları gibi üçüncü taraf
+    hizmetlere bağlantı verebilir. Bu hizmetlerin kendi gizlilik politikaları
+    geçerlidir. Bağlantıya tıkladığınızda ilgili tarafın koşullarını incelemeniz
+    önerilir.
+  </p>
+
+  <h2>Çocuklar</h2>
+  <p>
+    Reşit olmayan öğrenciler için iletişim ve ders süreci veli veya yasal
+    temsilci üzerinden yürütülür. Veli onayı olmadan öğrenciye ait kişisel veri
+    işlenmez.
+  </p>
+
+  <h2>Değişiklikler</h2>
+  <p>
+    Bu politika zaman zaman güncellenebilir. Güncel sürüm bu sayfada yayınlanır;
+    önemli değişikliklerde sayfanın üstündeki güncelleme tarihi değişir.
+  </p>
+
+  <h2>İletişim</h2>
+  <p>
+    Gizlilikle ilgili sorularınız için{' '}
+    <a href={`mailto:${site.email}`}>{site.email}</a> adresine veya{' '}
+    <a href={site.phoneHref}>{site.phoneDisplay}</a> numarasına ulaşabilirsiniz.
+  </p>
+
+  <p class="form-note">
+    Bu metin genel bilgilendirme amaçlıdır; hukuki danışmanlık yerine geçmez.
+  </p>
+</LegalLayout>

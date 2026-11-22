@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { adanaFaqs } from '../data/faqs';
+import { districts } from '../data/districts';
+import { webpageSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = "Adana Matematik Özel Ders | Yüz Yüze Birebir | Dilber Öğretmen";
+const description =
+  "Adana'da Seyhan, Çukurova, Yüreğir ve Sarıçam'da yüz yüze birebir matematik özel dersi. LGS, TYT-AYT ve 5-12. sınıf. Dilber Öğretmen, 10 yıl deneyim.";
+const path = '/adana-matematik-ozel-ders';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  serviceSchema({
+    name: 'Adana matematik özel ders',
+    description:
+      "Adana'da Seyhan, Çukurova, Yüreğir ve Sarıçam'da yüz yüze birebir matematik özel dersi.",
+    path,
+    serviceType: 'Yüz yüze matematik özel ders',
+    area: 'local',
+  }),
+  faqSchema(adanaFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Adana Matematik Özel Ders', path },
+  ]),
+];
+
+const facts = [
+  { label: 'İlçeler', value: 'Seyhan, Çukurova, Yüreğir, Sarıçam' },
+  { label: 'Ders yeri', value: 'Öğrencinin evi veya Seyhan/Tellidere çevresi' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Sınıflar', value: '5-12. sınıf ve mezun' },
+  { label: 'Sınavlar', value: 'LGS · TYT · AYT' },
+  { label: 'Adres', value: 'Tam adres randevu sonrası' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Adana Matematik Özel Ders', path }]} />
+      <p class="eyebrow">Adana · Yüz yüze</p>
+      <h1>Adana'da Matematik Özel Ders</h1>
+      <p class="lead">
+        Seyhan, Çukurova, Yüreğir ve Sarıçam'da yüz yüze birebir matematik
+        dersi. LGS, TYT-AYT ve 5-12. sınıf öğrencileri için planlı, ölçülebilir
+        bir program.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, Adana’da yüz yüze matematik özel ders hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#ilceler">İlçeleri gör</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="Adana'da ders özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Adana'da ders nasıl planlanıyor?</h2>
+        <p>
+          İlk görüşmede öğrencinin sınıfını, okul takvimini, mevcut netini ve
+          matematikte zorlandığı konuları konuşuyoruz. Ardından kısa bir seviye
+          tespiti yapıp hangi konuların önce çalışılacağını belirliyoruz.
+        </p>
+        <p>
+          Yüz yüze dersler 60 dakika ve birebir. Dersler öğrencinin evinde veya
+          Seyhan/Tellidere çevresindeki ders alanında yapılabiliyor. Ders
+          programı; okul saatleri, sınav tarihleri ve ailenin günlük düzenine
+          göre kuruluyor.
+        </p>
+        <h2>Hangi sınıf ve sınavlara destek var?</h2>
+        <ul>
+          <li>8. sınıf LGS matematik</li>
+          <li>9-12. sınıf TYT-AYT matematik</li>
+          <li>5-7. sınıf okul matematiği ve yazılı hazırlığı</li>
+          <li>Mezun öğrenciler için TYT-AYT planı</li>
+          <li>Sınav koçluğu ve haftalık takip</li>
+        </ul>
+        <p>
+          Dersane formatı yok; tek öğretmenle birebir çalışılıyor. Bu nedenle
+          program öğrencinin ihtiyacına göre esniyor.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Ders yeri ve güvenlik</h3>
+        <ul>
+          <li>Öğrencinin evinde ders mümkün.</li>
+          <li>Evde derste velinin bulunması tercih edilir.</li>
+          <li>Tam adres sitede yayınlanmaz; randevu sonrası paylaşılır.</li>
+          <li>Ders saatinden en az 24 saat önce iptal/erteleme konuşulur.</li>
+          <li>Adana dışı için online seçenek vardır.</li>
+        </ul>
+        <p class="form-note">
+          Mahremiyet ve güvenlik için adres bilgisi herkese açık
+          paylaşılmıyor.
+        </p>
+        <a class="btn btn-secondary btn-sm" href="/ders-kosullari">Ders koşulları</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="ilceler" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Hizmet alanı</p>
+        <h2>Adana'da yüz yüze ders verilen ilçeler</h2>
+        <p>
+          Her ilçe için ulaşım ve ders saati ayrı planlanıyor. İlçe sayfasında o
+          bölgeye özel ders düzenini bulabilirsiniz.
+        </p>
+      </div>
+      <div class="grid grid-4">
+        {districts.map((district) => (
+          <a class="district-card" href={`/adana/${district.slug}`}>
+            <strong>{district.name}</strong>
+            <span>{district.lead}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Süreç</p>
+        <h2>Yüz yüze dersin üç adımı</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Tanışma ve ihtiyaç</h3>
+          <p>
+            Hedef, sınıf, okul takvimi ve uygun ders saatleri konuşulur.
+            Yüz yüze mi online mı daha uygun, birlikte karar verilir.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Seviye tespiti</h3>
+          <p>
+            Kısa bir test ve soru-cevap ile güçlü ve eksik konular belirlenir.
+            İlk ders planı buna göre kurulur.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Ders ve takip</h3>
+          <p>
+            Haftalık ders, ödev ve deneme takibi başlar. Her dersin özeti
+            WhatsApp'tan, aylık gelişim veli raporundan paylaşılır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Güven</p>
+        <h2>Veliler süreci nasıl takip ediyor?</h2>
+        <p class="lead">
+          Ders sonrası kısa özet, haftalık ödev planı ve aylık veli raporu.
+          Böylece öğrencinin ne çalıştığı, nerede zorlandığı ve bir sonraki
+          adımın ne olduğu görünür olur.
+        </p>
+        <p>
+          Google İşletme Profili'ndeki gerçek veli ve öğrenci yorumlarını
+          inceleyebilirsiniz. Sitede abartılı başarı garantisi yerine düzenli
+          takip ve şeffaf iletişim sunuluyor.
+        </p>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>Adana'da yüz yüze ders hakkında</h2>
+      </div>
+      <FaqList faqs={adanaFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Adana'da yüz yüze ders için uygunluğu sorun."
+    text="İlçe, sınıf ve hedefinizi yazın; uygun ders saatini ve seçenekleri birlikte netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

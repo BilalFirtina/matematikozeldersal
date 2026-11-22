@@ -1,0 +1,183 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, waLink } from '../data/site';
+import { pricingFaqs } from '../data/faqs';
+import { webpageSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Matematik Özel Ders Ücretleri | Adana';
+const description =
+  "Matematik özel ders ücretlerini etkileyen faktörler: sınıf düzeyi, ders sıklığı, yüz yüze/online seçimi ve paket süresi. Güncel bilgi WhatsApp'tan paylaşılır.";
+const path = '/ucretler';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  serviceSchema({
+    name: 'Matematik özel ders',
+    description:
+      'Adana’da yüz yüze veya Türkiye geneli online birebir matematik özel dersi.',
+    path,
+    serviceType: 'Matematik özel ders',
+    area: 'both',
+  }),
+  faqSchema(pricingFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Ücretler', path },
+  ]),
+];
+
+const facts = [
+  { label: 'Sitede fiyat', value: 'Yayınlanmıyor' },
+  { label: 'Belirleyici', value: 'Sınıf, hedef, sıklık, format' },
+  { label: 'Paket', value: 'İhtiyaca göre planlanır' },
+  { label: 'Ödeme', value: 'Görüşmede netleşir' },
+  { label: 'Satış', value: 'Site üzerinden yok' },
+  { label: 'Bilgi', value: "WhatsApp'tan güncel ücret" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Ücretler', path }]} />
+      <p class="eyebrow">Ücretler</p>
+      <h1>Matematik Özel Ders Ücretleri</h1>
+      <p class="lead">
+        Ücretler sitede yayınlanmıyor; çünkü her öğrencinin sınıfı, hedefi ve
+        ders sıklığı farklı. Güncel bilgiyi WhatsApp'tan paylaşıyorum.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, matematik özel ders ücretleri hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          Güncel ücreti sor
+        </a>
+        <a class="btn btn-secondary" href="#faktorler">Neler etkiliyor?</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="Ücret özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="faktorler">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Faktörler</p>
+        <h2>Ücreti neler etkiliyor?</h2>
+        <p>
+          Tek bir fiyat yerine, ihtiyaca göre paket planlanıyor. Aşağıdaki
+          başlıklar görüşmede netleşiyor.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Sınıf düzeyi</h3>
+          <p class="muted">
+            5-7. sınıf okul matematiği, 8. sınıf LGS, 9-12. sınıf TYT-AYT ve
+            mezun programları farklı planlanır.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Ders sıklığı</h3>
+          <p class="muted">
+            Haftada 1 ders, haftada 2 ders veya sınav dönemine özel yoğun program
+            ihtiyaca göre seçilir.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Yüz yüze / online</h3>
+          <p class="muted">
+            Adana'da yüz yüze derslerde ulaşım ve ders yeri; online derslerde
+            platform ve süre planı etkili olur.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Paket süresi</h3>
+          <p class="muted">
+            Aylık düzenli paket mi, sınav dönemine özel kısa program mı olduğu
+            ücret ve planı etkiler.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Koçluk desteği</h3>
+          <p class="muted">
+            Yalnızca matematik dersi mi, yoksa haftalık plan ve deneme takibiyle
+            birlikte mi ilerleyeceğiniz netleşir.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Öğrencinin ihtiyacı</h3>
+          <p class="muted">
+            Temel eksik kapatma, yeni nesil soru pratiği veya sınav stratejisi
+            gibi öncelikler planı değiştirir.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Paketlerde neler var?</h2>
+        <ul>
+          <li>Birebir dersler (yüz yüze veya online)</li>
+          <li>Seviye tespiti ve konu eksik haritası</li>
+          <li>Kişiye özel haftalık plan</li>
+          <li>Ödev takibi ve ders özetleri</li>
+          <li>WhatsApp ile süreç iletişimi</li>
+          <li>Aylık veli raporu</li>
+        </ul>
+        <h2>Ödeme ve koşullar</h2>
+        <p>
+          Site üzerinden ödeme veya satış yapılmıyor. Ödeme, fatura ve paket
+          koşulları ders başlamadan önce görüşmede netleştiriliyor. İptal ve
+          erteleme için ders saatinden en az 24 saat önce haber verilmesi
+          bekleniyor.
+        </p>
+        <p class="form-note">
+          Kesin ücret ve koşullar, ders başlamadan önce yazılı olarak paylaşılır.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Neden fiyat sitede yok?</h3>
+        <p class="muted">
+          Her öğrencinin ihtiyacı farklı. Tek bir fiyat yazmak, ders sıklığı ve
+          kapsam farklarını gizler. Bunun yerine ihtiyaca göre şeffaf bir paket
+          sunuluyor.
+        </p>
+        <p>
+          Güncel ücret için sınıf, hedef ve ders sıklığını yazmanız yeterli.
+        </p>
+        <a class="btn btn-primary btn-block" href={waLink('Merhaba, matematik özel ders ücreti hakkında bilgi almak istiyorum. Sınıf: ___ Hedef: ___')} target="_blank" rel="noopener">
+          WhatsApp'tan yaz
+        </a>
+        <a class="btn btn-secondary btn-block mt-2" href={site.phoneHref}>
+          {site.phoneDisplay}
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>Ücretler ve koşullar hakkında</h2>
+      </div>
+      <FaqList faqs={pricingFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Sizin için doğru paketi birlikte belirleyelim."
+    text="Sınıf, hedef ve haftalık ders ihtiyacınızı yazın; güncel ücret ve planı netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

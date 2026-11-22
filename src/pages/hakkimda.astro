@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { webpageSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Dilber Öğretmen | Adana Matematik Özel Ders';
+const description =
+  "Dilber Öğretmen: matematik bölümü mezunu, 10 yıllık deneyim. Adana'da yüz yüze, Türkiye geneli online LGS, TYT-AYT ve okul matematiği özel dersi.";
+const path = '/hakkimda';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Dilber Öğretmen', path },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Dilber Öğretmen', path }]} />
+      <p class="eyebrow">Hakkımda</p>
+      <h1>Dilber Öğretmen Kimdir?</h1>
+      <p class="lead">
+        Matematik bölümü mezunu, 10 yıllık deneyimle LGS, TYT-AYT ve 5-12. sınıf
+        öğrencileriyle çalışıyorum. Adana'da yüz yüze, Türkiye genelinde online
+        ders veriyorum.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Kısa özet</h2>
+        <p>
+          Matematik bölümü mezunuyum. 10 yıldır ilkokul, ortaokul ve lise
+          düzeyinde matematik dersi veriyorum. LGS, TYT ve AYT hazırlığında
+          birebir ders; ayrıca sınav koçluğu ve çalışma planı desteği sunuyorum.
+        </p>
+        <p>
+          Derslerde yalnızca konu anlatmıyorum; öğrencinin nerede takıldığını
+          görmek, çalışma düzenini kurmak ve sınavda kullanabileceği bir soru
+          çözme rutini kazandırmak istiyorum. Bu yüzden ilk adım her zaman
+          seviye tespiti.
+        </p>
+        <h2>Nasıl çalışıyorum?</h2>
+        <ul>
+          <li>Önce hedefi ve mevcut seviyeyi netleştiriyorum.</li>
+          <li>Eksik konuları öncelik sırasına koyuyorum.</li>
+          <li>Haftalık ders ve ödev planı hazırlıyorum.</li>
+          <li>Her dersin sonunda kısa özet paylaşıyorum.</li>
+          <li>Aylık veli raporuyla gelişimi görünür kılıyorum.</li>
+        </ul>
+        <h2>Neden yüz yüze + online?</h2>
+        <p>
+          Adana'da yüz yüze ders, öğrencinin doğrudan geri bildirim almasını
+          kolaylaştırıyor. Online ders ise Adana dışındaki öğrencilere ve yoğun
+          programı olan ailelere esneklik sağlıyor. İki formatta da aynı plan ve
+          takip sistemi kullanılıyor.
+        </p>
+        <h2>Güven ve sınırlar</h2>
+        <p>
+          Derslerde abartılı başarı garantisi vermiyorum. Her öğrencinin başlangıç
+          seviyesi, çalışma düzeni ve sınav performansı farklı. Bunun yerine
+          düzenli takip, gerçekçi hedef ve şeffaf iletişim sunuyorum.
+        </p>
+        <p>
+          Yüz yüze derslerde tam adres, güvenlik ve mahremiyet için randevu
+          onayından sonra paylaşılıyor. Öğrencinin evinde derste velinin
+          bulunmasını önemsiyorum.
+        </p>
+        <h2>Kimlerle çalışıyorum?</h2>
+        <ul>
+          <li>8. sınıf LGS öğrencileri</li>
+          <li>9-12. sınıf TYT-AYT öğrencileri</li>
+          <li>Mezun öğrenciler</li>
+          <li>5-7. sınıf okul matematiği desteği isteyenler</li>
+          <li>Sınav koçluğu arayan öğrenciler ve veliler</li>
+        </ul>
+      </div>
+      <aside>
+        <div class="graph-paper" style="padding: 26px; min-height: 320px; display: flex; flex-direction: column; justify-content: space-between;">
+          {site.photo ? (
+            <img class="avatar" src={site.photo} alt={site.photoAlt} width="118" height="118" />
+          ) : (
+            <div class="monogram" aria-hidden="true">DÖ</div>
+          )}
+          <div>
+            <p class="eyebrow">Ders yaklaşımı</p>
+            <p style="font-family: var(--font-serif); font-size: 1.35rem; line-height: 1.3; margin: 0 0 8px;">
+              “Önce seviyeyi gör, sonra planı kur. İlerleme görünür olsun.”
+            </p>
+            <p class="muted" style="margin: 0; font-size: 0.88rem;">
+              Birebir ders, haftalık takip ve aylık veli raporu.
+            </p>
+          </div>
+        </div>
+        <div class="card mt-2">
+          <h3>Kısa bilgiler</h3>
+          <ul>
+            <li>Matematik bölümü mezunu</li>
+            <li>10 yıl ders deneyimi</li>
+            <li>LGS, TYT-AYT, 5-12. sınıf</li>
+            <li>Adana'da yüz yüze, online Türkiye geneli</li>
+            <li>Birebir 60 dakika</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Güven</p>
+        <h2>Veliler ne diyor?</h2>
+        <p class="lead">
+          Gerçek veli ve öğrenci yorumları Google İşletme Profili'nde
+          yayınlanıyor. Sitede yorum uydurmuyor, olduğu gibi Google'a
+          yönlendiriyoruz.
+        </p>
+        <a class="btn btn-primary" href="/yorumlar">Yorumlar sayfası</a>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Tanışmak ve hedefi konuşmak için yazın."
+    text="Sınıf, hedef ve uygun ders saatini paylaşın; yüz yüze veya online seçeneği birlikte netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

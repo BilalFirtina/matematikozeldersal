@@ -1,0 +1,68 @@
+---
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyCTA from '../components/StickyCTA.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+import { site } from '../data/site';
+import { baseSchemas } from '../lib/schema';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+  schemas?: Record<string, unknown>[];
+}
+
+const { title, description, canonical, image, noindex = false, schemas = [] } = Astro.props;
+const allSchemas = [...baseSchemas(), ...schemas];
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title={`${site.brand} blog`} href="/rss.xml" />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+      noindex={noindex}
+      schemas={allSchemas}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">İçeriğe geç</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <StickyCTA />
+    <ConsentBanner />
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const link = target.closest('a');
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+        if (href.startsWith('https://wa.me/')) {
+          window.dataLayer.push({ event: 'whatsapp_click' });
+        } else if (href.startsWith('tel:')) {
+          window.dataLayer.push({ event: 'phone_click' });
+        } else if (href.includes('google.com/maps')) {
+          window.dataLayer.push({ event: 'map_click' });
+        }
+      });
+    </script>
+  </body>
+</html>

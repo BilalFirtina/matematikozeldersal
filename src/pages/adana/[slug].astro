@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import FactBox from '../../components/FactBox.astro';
+import FaqList from '../../components/FaqList.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import ReviewLink from '../../components/ReviewLink.astro';
+import { districts } from '../../data/districts';
+import { site, waLink } from '../../data/site';
+import { webpageSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return districts.map((district) => ({
+    params: { slug: district.slug },
+    props: { district },
+  }));
+}
+
+const { district } = Astro.props;
+const path = `/adana/${district.slug}`;
+const title = district.title;
+const description = district.description;
+
+const schemas = [
+  webpageSchema(path, title, description),
+  serviceSchema({
+    name: `${district.name} matematik özel ders`,
+    description: district.description,
+    path,
+    serviceType: 'Yüz yüze matematik özel ders',
+    area: 'local',
+  }),
+  faqSchema(district.faqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Adana Matematik Özel Ders', path: '/adana-matematik-ozel-ders' },
+    { name: district.name, path },
+  ]),
+];
+
+const otherDistricts = districts.filter((item) => item.slug !== district.slug);
+
+const facts = [
+  { label: 'İlçe', value: `${district.name}, Adana` },
+  { label: 'Ders yeri', value: 'Öğrencinin evi veya Seyhan/Tellidere çevresi' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Sınıflar', value: '5-12. sınıf ve mezun' },
+  { label: 'Sınavlar', value: 'LGS · TYT · AYT' },
+  { label: 'Adres', value: 'Tam adres randevu sonrası' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs
+        items={[
+          { name: 'Adana Matematik Özel Ders', path: '/adana-matematik-ozel-ders' },
+          { name: district.name, path },
+        ]}
+      />
+      <p class="eyebrow">{district.name} · Adana</p>
+      <h1>{district.h1}</h1>
+      <p class="lead">{district.lead}</p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink(`Merhaba, ${district.name}’da yüz yüze matematik özel ders hakkında bilgi almak istiyorum.`)} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#ders-yeri">Ders yerini gör</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title={`${district.name} ders özeti`} items={facts} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div class="prose">
+        {district.intro.map((paragraph) => <p>{paragraph}</p>)}
+        <h2>Hangi konularda destek var?</h2>
+        <ul>
+          {district.focus.map((item) => <li>{item}</li>)}
+        </ul>
+        <p>
+          Ders planı; okul takvimi, sınav tarihi ve öğrencinin mevcut seviyesine
+          göre kuruluyor. İlk adımda kısa bir seviye tespiti yapılıyor.
+        </p>
+        <h2>Online alternatif</h2>
+        <p>
+          {district.name}'da yüz yüze plan uymuyorsa Google Meet veya Zoom
+          üzerinden online ders alabilirsiniz. Online derslerde de aynı plan ve
+          takip sistemi kullanılıyor.
+        </p>
+      </div>
+      <aside id="ders-yeri">
+        <div class="card">
+          <h3>Ders yeri ve ulaşım</h3>
+          <ul>
+            {district.logistics.map((item) => <li>{item}</li>)}
+          </ul>
+          <p class="form-note">
+            Tam adres, güvenlik ve mahremiyet için randevu onayından sonra
+            paylaşılır.
+          </p>
+          <a class="btn btn-secondary btn-sm" href="/ders-kosullari">Ders koşulları</a>
+        </div>
+        <div class="card mt-2">
+          <h3>Yakın mahalleler</h3>
+          <ul>
+            {district.neighborhoods.map((item) => <li>{item}</li>)}
+          </ul>
+          <p class="form-note">
+            Ulaşım süresi ve ders saati görüşmede netleştirilir.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Süreç</p>
+        <h2>{district.name}'da ders nasıl başlıyor?</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Tanışma</h3>
+          <p>
+            Sınıf, hedef, okul takvimi ve uygun ders saati konuşulur.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Seviye tespiti</h3>
+          <p>
+            Kısa bir test ve soru-cevapla eksik konular belirlenir.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Plan ve takip</h3>
+          <p>
+            Haftalık ders ve ödev planı başlar; veliyle düzenli iletişim kurulur.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Güven</p>
+        <h2>{district.name}'da veli iletişimi</h2>
+        <p class="lead">
+          Ders sonrası kısa özet, haftalık ödev planı ve aylık veli raporu.
+          Öğrencinin gelişimi görünür olduğunda süreç daha sağlıklı ilerliyor.
+        </p>
+        <p>
+          Google İşletme Profili'ndeki gerçek yorumları inceleyebilir; aklınıza
+          takılanları doğrudan WhatsApp'tan sorabilirsiniz.
+        </p>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>{district.name} matematik özel ders hakkında</h2>
+      </div>
+      <FaqList faqs={district.faqs} />
+      <div class="mt-3">
+        <h3>Diğer ilçeler</h3>
+        <div class="grid grid-3 mt-2">
+          {otherDistricts.map((item) => (
+            <a class="district-card" href={`/adana/${item.slug}`}>
+              <strong>{item.name}</strong>
+              <span>{item.lead}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title={`${district.name}'da yüz yüze ders için uygunluğu sorun.`}
+    text="Mahalle, sınıf ve hedefinizi yazın; ulaşım ve ders saatini birlikte netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

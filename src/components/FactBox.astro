@@ -1,0 +1,25 @@
+---
+interface FactItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  title?: string;
+  items: FactItem[];
+}
+
+const { title = 'Kısaca', items } = Astro.props;
+---
+
+<div class="fact-box">
+  <h2>{title}</h2>
+  <div class="fact-grid">
+    {items.map((item) => (
+      <div class="fact-item">
+        <span class="fact-label">{item.label}</span>
+        <span class="fact-value">{item.value}</span>
+      </div>
+    ))}
+  </div>
+</div>

@@ -1,0 +1,85 @@
+---
+import { site, waLink } from '../data/site';
+import { districts } from '../data/districts';
+
+const year = new Date().getFullYear();
+const legalLinks = [
+  { href: '/kvkk', label: 'KVKK' },
+  { href: '/gizlilik', label: 'Gizlilik' },
+  { href: '/cerez-politikasi', label: 'Çerez Politikası' },
+  { href: '/ders-kosullari', label: 'Ders Koşulları' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">AM</span>
+          <span class="brand-text">
+            <span class="brand-name">Adana Matematik</span>
+            <span class="brand-sub">Matematik Özel Ders</span>
+          </span>
+        </a>
+        <p>
+          Adana'da yüz yüze, Türkiye geneli online LGS, TYT-AYT ve okul matematiği
+          özel dersi. Birebir, planlı ve ölçülebilir ilerleme.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="footer-title">Sayfalar</h2>
+        <ul class="footer-links">
+          <li><a href="/adana-matematik-ozel-ders">Adana'da Yüz Yüze</a></li>
+          <li><a href="/online-matematik-ozel-ders">Online Ders</a></li>
+          <li><a href="/lgs-matematik-ozel-ders">LGS Matematik</a></li>
+          <li><a href="/tyt-matematik-ozel-ders">TYT Matematik</a></li>
+          <li><a href="/ayt-matematik-ozel-ders">AYT Matematik</a></li>
+          <li><a href="/sinav-koclugu">Sınav Koçluğu</a></li>
+          <li><a href="/hakkimda">Hakkımda</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer-title">Hizmet Alanı</h2>
+        <ul class="footer-links">
+          {districts.map((district) => (
+            <li>
+              <a href={`/adana/${district.slug}`}>{district.name}</a>
+            </li>
+          ))}
+          <li><a href="/online-matematik-ozel-ders">Türkiye geneli online</a></li>
+          <li><a href="/ucretler">Ücretler</a></li>
+          <li><a href="/sss">Sıkça Sorulan Sorular</a></li>
+          <li><a href="/yorumlar">Google Yorumları</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer-title">İletişim</h2>
+        <ul class="footer-links">
+          <li><a href={site.phoneHref}>{site.phoneDisplay}</a></li>
+          <li><a href={waLink()} target="_blank" rel="noopener">WhatsApp'tan yaz</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          {site.instagram && (
+            <li><a href={site.instagram} target="_blank" rel="noopener">Instagram</a></li>
+          )}
+          {site.youtube && (
+            <li><a href={site.youtube} target="_blank" rel="noopener">YouTube</a></li>
+          )}
+          <li>{site.address.display}</li>
+          <li>{site.hours}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {year} {site.legalName}</span>
+      <div class="footer-legal">
+        {legalLinks.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </div>
+  </div>
+</footer>

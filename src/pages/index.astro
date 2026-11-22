@@ -1,0 +1,379 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FactBox from '../components/FactBox.astro';
+import ProgramCard from '../components/ProgramCard.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import PostCard from '../components/PostCard.astro';
+import { site, waLink } from '../data/site';
+import { programs } from '../data/programs';
+import { homeFaqs } from '../data/faqs';
+import { districts } from '../data/districts';
+import { webpageSchema, faqSchema, serviceSchema } from '../lib/schema';
+
+const title = 'Adana Matematik Özel Ders | Dilber Öğretmen | LGS, TYT-AYT';
+const description =
+  "Adana'da Seyhan, Çukurova, Yüreğir ve Sarıçam'da yüz yüze; Türkiye geneli online LGS, TYT-AYT ve okul matematiği özel dersi. Dilber Öğretmen, 10 yıllık deneyim.";
+
+const schemas = [
+  webpageSchema('/', title, description),
+  serviceSchema({
+    name: 'Adana matematik özel ders',
+    description:
+      "Adana'da Seyhan, Çukurova, Yüreğir ve Sarıçam'da yüz yüze birebir matematik özel dersi.",
+    path: '/',
+    serviceType: 'Yüz yüze matematik özel ders',
+    area: 'local',
+  }),
+  serviceSchema({
+    name: 'Online matematik özel ders',
+    description:
+      "Türkiye geneli online birebir matematik özel dersi; Google Meet veya Zoom üzerinden 60 dakika.",
+    path: '/',
+    serviceType: 'Online matematik özel ders',
+    area: 'online',
+  }),
+  faqSchema(homeFaqs, '/'),
+];
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const facts = [
+  { label: 'Marka', value: site.brand },
+  { label: 'Öğretmen', value: site.teacher },
+  { label: 'Yüz yüze', value: "Seyhan, Çukurova, Yüreğir, Sarıçam" },
+  { label: 'Online', value: 'Türkiye geneli · Meet / Zoom' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Ücret', value: "WhatsApp'tan güncel bilgi" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical="/" schemas={schemas}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Adana · Yüz yüze ve online</p>
+        <h1>Adana Matematik Özel Ders</h1>
+        <p class="lead">
+          Dilber Öğretmen ile birebir, planlı ve ölçülebilir matematik. LGS,
+          TYT-AYT ve 5-12. sınıf; Adana'da yüz yüze, Türkiye'nin her yerinden
+          online.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={waLink()} target="_blank" rel="noopener">
+            WhatsApp'tan bilgi al
+          </a>
+          <a class="btn btn-secondary" href="#programlar">Dersleri incele</a>
+        </div>
+        <div class="hero-note">
+          <span class="pill">10 yıl deneyim</span>
+          <span class="pill">Birebir 60 dk</span>
+          <span class="pill">4 ilçe</span>
+          <span class="pill">Online</span>
+        </div>
+
+        <div class="stats" aria-label="Kısa bilgiler">
+          <div class="stat">
+            <span class="stat-value">10 yıl</span>
+            <span class="stat-label">ders deneyimi</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">4 ilçe</span>
+            <span class="stat-label">yüz yüze hizmet</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">60 dk</span>
+            <span class="stat-label">birebir ders</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">5-12</span>
+            <span class="stat-label">sınıf ve mezun</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="graph-paper hero-card">
+          <div class="hero-card-top">
+            {site.photo ? (
+              <img class="avatar" src={site.photo} alt={site.photoAlt} width="118" height="118" />
+            ) : (
+              <div class="monogram" aria-hidden="true">DÖ</div>
+            )}
+            <div class="formula" aria-hidden="true">
+              <span>x² + y² = r²</span>
+              <span>f(x) → net</span>
+              <span>√x · plan</span>
+            </div>
+          </div>
+          <div class="hero-card-bottom">
+            <strong>Birebir ders, düzenli takip.</strong>
+            <span>
+              Seviye tespiti, kişiye özel plan ve aylık veli raporu ile ilerleme
+              görünür olur.
+            </span>
+          </div>
+        </div>
+        <div class="hero-stamp" aria-hidden="true">
+          Adana
+          <br />
+          yüz yüze
+          <br />
+          + online
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="Kısaca" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="programlar">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Programlar</p>
+        <h2>Hedefe göre matematik desteği</h2>
+        <p>
+          Aynı program her öğrenciye uymaz. Önce seviye tespiti yapıyor, sonra
+          sınav takvimine ve ihtiyaca göre planı birlikte kuruyoruz.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {programs.map((program) => <ProgramCard program={program} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Neden Dilber Öğretmen?</p>
+        <h2>Butik ders, ölçülebilir ilerleme</h2>
+        <p>
+          Kalabalık sınıfların aksine her derste tek öğrenciye odaklanıyoruz.
+          Amaç yalnızca konu anlatmak değil; öğrencinin nasıl çalışacağını
+          öğrenmesi.
+        </p>
+      </div>
+      <div class="grid grid-4">
+        <article class="card">
+          <h3>10 yıllık deneyim</h3>
+          <p class="muted">
+            Matematik bölümü mezunu; LGS, TYT-AYT ve okul matematiğinde 10 yıldır
+            ders veriyor.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Kişiye özel plan</h3>
+          <p class="muted">
+            Okul takvimi, sınav tarihi ve öğrencinin temposuna göre haftalık plan
+            hazırlanıyor.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Düzenli takip</h3>
+          <p class="muted">
+            Ders konusu ve ödevi WhatsApp'tan paylaşılıyor; gelişim aylık veli
+            raporuyla özetleniyor.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Yüz yüze + online</h3>
+          <p class="muted">
+            Adana'da 4 ilçede yüz yüze; Türkiye'nin her yerinden Google Meet veya
+            Zoom ile online.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Nasıl işliyor?</p>
+        <h2>Üç adımda başlayın</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Tanışalım</h3>
+          <p>
+            Hedefi, okul durumunu ve beklentileri konuşuyoruz. Hangi ders ve
+            sıklıkta ihtiyaç olduğunu netleştiriyoruz.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Seviyeyi ölçelim</h3>
+          <p>
+            Kısa bir tespit çalışmasıyla güçlü ve eksik konuları belirliyoruz.
+            Plan tahmine değil, veriye dayanıyor.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Planla ilerleyelim</h3>
+          <p>
+            Haftalık ders ve ödev planıyla başlıyoruz. Her dersin sonunda kısa
+            özet, ayda bir veli raporu paylaşılıyor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="adana" style="background: var(--surface-2);">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Adana'da yüz yüze</p>
+        <h2>Seyhan, Çukurova, Yüreğir ve Sarıçam</h2>
+        <p class="lead">
+          Dersler öğrencinin evinde veya Seyhan/Tellidere çevresindeki ders
+          alanında yapılıyor. Tam adres, güvenlik ve mahremiyet için randevu
+          onayından sonra paylaşılıyor.
+        </p>
+        <div class="grid grid-2 mt-3">
+          {districts.map((district) => (
+            <a class="district-card" href={`/adana/${district.slug}`}>
+              <strong>{district.name}</strong>
+              <span>{district.lead}</span>
+            </a>
+          ))}
+        </div>
+        <div class="btn-group mt-3">
+          <a class="btn btn-primary" href="/adana-matematik-ozel-ders">
+            Adana sayfasını gör
+          </a>
+          <a class="btn btn-secondary" href={waLink('Merhaba, Adana’da yüz yüze matematik özel ders hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+            Uygunluk sor
+          </a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Yüz yüze dersin çerçevesi</h3>
+        <ul>
+          <li>60 dakika, birebir ders.</li>
+          <li>Öğrencinin evi veya Seyhan/Tellidere çevresindeki ders alanı.</li>
+          <li>Öğrencinin evinde derste velinin bulunması tercih edilir.</li>
+          <li>Ders saati ve ulaşım, görüşmede netleştirilir.</li>
+          <li>Adana dışı için online seçenek sunulur.</li>
+        </ul>
+        <p class="form-note">
+          Dersane değil; tek öğretmenle birebir özel ders modeli.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="online">
+    <div class="container two-col">
+      <div class="card">
+        <p class="eyebrow">Online</p>
+        <h2>Türkiye geneli online ders</h2>
+        <p class="muted">
+          Google Meet veya Zoom üzerinden 60 dakikalık birebir ders. Ekran
+          paylaşımı, soru çözümü ve ders sonrası ödev takibi.
+        </p>
+        <ul>
+          <li>Türkiye'nin her yerinden katılım.</li>
+          <li>Kamera, mikrofon ve stabil internet yeterli.</li>
+          <li>Veli ilk derse katılabilir.</li>
+          <li>Ders sonrası kısa özet ve ödev paylaşımı.</li>
+        </ul>
+        <a class="btn btn-primary" href="/online-matematik-ozel-ders">
+          Online dersi incele
+        </a>
+      </div>
+      <div>
+        <p class="eyebrow">Kimler için?</p>
+        <h2>Adana dışında yaşıyorsanız</h2>
+        <p class="lead">
+          LGS, TYT-AYT veya okul matematiği için yüz yüze uygun saat
+          bulamıyorsanız online ders pratik bir alternatif olabilir. Dersin
+          verimliliği; düzenli katılım, ödev takibi ve veli iletişimiyle
+          belirlenir.
+        </p>
+        <p>
+          Online ders öncesi kısa bir teknik test yapıyoruz. Böylece ders
+          sırasında bağlantı veya materyal sorunuyla vakit kaybetmiyoruz.
+        </p>
+        <a class="btn btn-secondary" href="/yontem">Ders yöntemini gör</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head center">
+        <p class="eyebrow">Güven</p>
+        <h2>Gerçek yorumlar, net bir süreç</h2>
+        <p>
+          Velilerin ve öğrencilerin deneyimleri Google İşletme Profili'nde
+          yayınlanıyor. Sitede abartılı vaatler yerine süreci ve iletişimi şeffaf
+          tutuyoruz.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>10 yıl deneyim</h3>
+          <p class="muted">
+            Matematik bölümü mezunu; LGS, TYT-AYT ve 5-12. sınıf öğrencileriyle
+            çalışıyor.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Birebir ders</h3>
+          <p class="muted">
+            Dersler tek öğrenciyle yapılıyor; konu ve soru çözümü öğrencinin
+            ihtiyacına göre planlanıyor.
+          </p>
+        </div>
+        <ReviewLink compact />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>Başlamadan önce merak edilenler</h2>
+      </div>
+      <FaqList faqs={homeFaqs} />
+      <div class="btn-group mt-3">
+        <a class="btn btn-secondary" href="/sss">Tüm soruları gör</a>
+        <a class="btn btn-primary" href={waLink()} target="_blank" rel="noopener">
+          WhatsApp'tan sor
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section" style="background: var(--surface-2);">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Rehberler</p>
+          <h2>Matematik ve sınav rehberi</h2>
+          <p>
+            LGS, TYT-AYT, online ders ve Adana'da özel ders seçimi üzerine
+            uygulanabilir yazılar.
+          </p>
+        </div>
+        <div class="blog-grid">
+          {posts.map((post) => <PostCard post={post} />)}
+        </div>
+        <div class="btn-group mt-3">
+          <a class="btn btn-secondary" href="/blog">Tüm yazılar</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CtaBand />
+</BaseLayout>

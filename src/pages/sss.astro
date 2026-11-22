@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { sssGroups } from '../data/faqs';
+import { webpageSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Sıkça Sorulan Sorular | Adana Matematik Özel Ders';
+const description =
+  "Adana'da yüz yüze ve online matematik özel dersi hakkında sık sorulan sorular: dersler, ücretler, LGS, TYT-AYT, online ders, koçluk ve iptal koşulları.";
+const path = '/sss';
+
+const allFaqs = Array.from(
+  new Map(sssGroups.flatMap((group) => group.faqs).map((faq) => [faq.q, faq])).values(),
+);
+
+const schemas = [
+  webpageSchema(path, title, description),
+  faqSchema(allFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Sıkça Sorulan Sorular', path },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Sıkça Sorulan Sorular', path }]} />
+      <p class="eyebrow">SSS</p>
+      <h1>Sıkça Sorulan Sorular</h1>
+      <p class="lead">
+        Dersler, yüz yüze/online seçenek, LGS, TYT-AYT, koçluk ve ücretler
+        hakkında en sık sorulan soruların yanıtları.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {sssGroups.map((group) => (
+        <div class="mb-4">
+          <h2>{group.title}</h2>
+          <FaqList faqs={group.faqs} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <CtaBand
+    title="Aradığınız cevabı bulamadınız mı?"
+    text="Sınıf, hedef ve sorunuzu WhatsApp'tan yazın; en kısa sürede dönüş yapalım."
+    primaryLabel="WhatsApp'tan sor"
+  />
+</BaseLayout>

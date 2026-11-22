@@ -1,0 +1,63 @@
+---
+import { site, absoluteUrl } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+  type?: string;
+  schemas?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  noindex = false,
+  type = 'website',
+  schemas = [],
+} = Astro.props;
+
+const canonicalPath = canonical ?? Astro.url.pathname;
+const canonicalUrl = absoluteUrl(canonicalPath);
+const imageUrl = image
+  ? image.startsWith('http')
+    ? image
+    : absoluteUrl(image)
+  : absoluteUrl(site.defaultOgImage);
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': schemas,
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta
+  name="robots"
+  content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'}
+/>
+<meta name="author" content={site.teacher} />
+<meta name="theme-color" content="#0e5a54" />
+<meta name="geo.region" content="TR-01" />
+<meta name="geo.placename" content="Adana" />
+
+<meta property="og:type" content={type} />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:site_name" content={site.brand} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={`${site.brand} — ${site.teacher}`} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+{schemas.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}

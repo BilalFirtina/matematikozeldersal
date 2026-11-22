@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { onlineFaqs } from '../data/faqs';
+import { webpageSchema, courseSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Online Matematik Özel Ders | Türkiye Geneli | Dilber Öğretmen';
+const description =
+  "Türkiye geneli online birebir matematik özel dersi. LGS, TYT-AYT ve 5-12. sınıf; Google Meet veya Zoom üzerinden 60 dakika. Dilber Öğretmen, 10 yıl deneyim.";
+const path = '/online-matematik-ozel-ders';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  courseSchema({
+    name: 'Online matematik özel ders',
+    description:
+      "Türkiye geneli online birebir matematik özel dersi; Google Meet veya Zoom üzerinden 60 dakika.",
+    path,
+    mode: 'online',
+    teaches: ['LGS matematik', 'TYT matematik', 'AYT matematik', 'Okul matematiği'],
+  }),
+  faqSchema(onlineFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Online Matematik Özel Ders', path },
+  ]),
+];
+
+const facts = [
+  { label: 'Kapsam', value: 'Türkiye geneli' },
+  { label: 'Platform', value: 'Google Meet veya Zoom' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Sınıflar', value: '5-12. sınıf ve mezun' },
+  { label: 'Sınavlar', value: 'LGS · TYT · AYT' },
+  { label: 'Ücret', value: "WhatsApp'tan güncel bilgi" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Online Matematik Özel Ders', path }]} />
+      <p class="eyebrow">Türkiye geneli · Online</p>
+      <h1>Online Matematik Özel Ders</h1>
+      <p class="lead">
+        Nerede yaşarsanız yaşayın; birebir, planlı ve takip edilen online
+        matematik dersi. Google Meet veya Zoom üzerinden 60 dakika.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, online matematik özel ders hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#nasil">Ders nasıl işliyor?</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="Online ders özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="nasil">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Online ders nasıl işliyor?</h2>
+        <p>
+          Dersler Google Meet veya Zoom üzerinden yapılıyor. Öğretmen ekranını
+          paylaşarak konu anlatıyor; öğrenci kendi defterine yazıyor ve soruları
+          birlikte çözüyoruz. Dersin sonunda kısa bir özet ve ödev planı
+          paylaşılıyor.
+        </p>
+        <p>
+          Online dersin verimli olması için kamera, mikrofon ve stabil internet
+          yeterli. İlk dersten önce kısa bir bağlantı testi yapıyoruz. Öğrencinin
+          ders sırasında kitap, defter ve soru bankasını yanında bulundurması
+          gerekiyor.
+        </p>
+        <h2>Hangi sınıf ve sınavlar?</h2>
+        <ul>
+          <li>8. sınıf LGS matematik</li>
+          <li>9-12. sınıf TYT-AYT matematik</li>
+          <li>5-7. sınıf okul matematiği ve yazılı hazırlığı</li>
+          <li>Mezun öğrenciler için TYT-AYT planı</li>
+          <li>Sınav koçluğu ve haftalık takip</li>
+        </ul>
+        <h2>Online ders kimler için uygun?</h2>
+        <p>
+          Adana dışında yaşayan, ulaşımda zorlanan veya yüz yüze uygun saat
+          bulamayan öğrenciler için online ders pratik bir seçenek. Öz disiplini
+          düşük öğrencilerde veli desteği ve düzenli ödev takibi daha da önemli
+          hale geliyor.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Teknik gereksinimler</h3>
+        <ul>
+          <li>Kamera ve mikrofonu olan bilgisayar veya tablet</li>
+          <li>Stabil internet bağlantısı</li>
+          <li>Sessiz bir oda</li>
+          <li>Defter, kalem, soru bankası ve ders materyali</li>
+          <li>Google Meet veya Zoom uygulaması</li>
+        </ul>
+        <p class="form-note">
+          Ders öncesi bağlantı testi yapılır; teknik sorun ders saatini
+          tüketmez.
+        </p>
+        <a class="btn btn-secondary btn-sm" href="/yontem">Ders yöntemi</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Karşılaştırma</p>
+        <h2>Online mu, yüz yüze mi?</h2>
+        <p>
+          İkisi de aynı öğretmen ve aynı planla yürüyor. Seçim; yaşadığınız yer,
+          ulaşım, ders saati ve öğrencinin öğrenme tercihine göre yapılmalı.
+        </p>
+      </div>
+      <div class="prose">
+        <table>
+          <thead>
+            <tr><th>Kriter</th><th>Online</th><th>Yüz yüze</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ulaşım</td><td>Yok</td><td>Zaman ve yol gerekir</td></tr>
+            <tr><td>Esneklik</td><td>Yüksek</td><td>Saat ve konum sınırlı</td></tr>
+            <tr><td>Ders materyali</td><td>Dijital + öğrencinin kaynakları</td><td>Basılı kaynak daha kolay</td></tr>
+            <tr><td>Öğrenci odağı</td><td>Veli desteği gerekebilir</td><td>Öğretmen doğrudan müdahale eder</td></tr>
+            <tr><td>Adana dışı</td><td>Uygun</td><td>Uygun değil</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Takip</p>
+        <h2>Online dersin görünmeyen kısmı</h2>
+        <p class="lead">
+          Ders 60 dakika; ancak ilerleme ders dışında da devam ediyor. Her dersin
+          sonunda ödev planı paylaşılıyor, bir sonraki derste kontrol ediliyor.
+        </p>
+        <p>
+          Aylık veli raporunda işlenen konular, ödev durumu ve deneme sonuçları
+          özetleniyor. Böylece veli süreci uzaktan da takip edebiliyor.
+        </p>
+        <a class="btn btn-primary" href={waLink()} target="_blank" rel="noopener">
+          Uygun saat sor
+        </a>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>Online ders hakkında</h2>
+      </div>
+      <FaqList faqs={onlineFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Türkiye'nin her yerinden birebir matematik desteği."
+    text="Sınıf, hedef ve uygun ders saatini yazın; online ders planını birlikte kuralım."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

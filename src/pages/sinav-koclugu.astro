@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { coachingFaqs } from '../data/faqs';
+import { webpageSchema, serviceSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Sınav Koçluğu | LGS ve YKS | Dilber Öğretmen';
+const description =
+  "LGS ve YKS için sınav koçluğu: haftalık plan, deneme analizi, ödev takibi ve veli iletişimi. Adana'da yüz yüze veya online. Dilber Öğretmen.";
+const path = '/sinav-koclugu';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  serviceSchema({
+    name: 'Sınav koçluğu',
+    description:
+      'LGS ve YKS öğrencileri için haftalık plan, deneme analizi, ödev takibi ve veli iletişimi.',
+    path,
+    serviceType: 'Sınav koçluğu',
+    area: 'both',
+  }),
+  faqSchema(coachingFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Sınav Koçluğu', path },
+  ]),
+];
+
+const facts = [
+  { label: 'Kapsam', value: 'LGS ve YKS' },
+  { label: 'Odak', value: 'Plan, takip, deneme analizi' },
+  { label: 'Format', value: 'Yüz yüze veya online' },
+  { label: 'Sıklık', value: 'Haftalık takip' },
+  { label: 'Veli', value: 'Düzenli geri bildirim' },
+  { label: 'Sınır', value: 'Psikolojik danışmanlık değil' },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Sınav Koçluğu', path }]} />
+      <p class="eyebrow">LGS · YKS</p>
+      <h1>Sınav Koçluğu</h1>
+      <p class="lead">
+        Haftalık plan, deneme analizi, ödev takibi ve veli iletişimini birlikte
+        yürüten bir takip programı. Matematik dersini destekler; yerine geçmez.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, sınav koçluğu hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#kapsam">Kapsamı gör</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="Koçluk özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="kapsam">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Sınav koçluğu neyi kapsar?</h2>
+        <p>
+          Sınav koçluğu; öğrencinin haftalık çalışma planını kurmak, ödev ve
+          deneme takibini yapmak, sınav stratejisini netleştirmek ve veliyle
+          düzenli iletişim kurmak üzerine odaklanır.
+        </p>
+        <ul>
+          <li>Haftalık çalışma planı ve kontrolü</li>
+          <li>Deneme sonrası analiz</li>
+          <li>Ödev ve tekrar takibi</li>
+          <li>Sınav stratejisi ve zaman yönetimi</li>
+          <li>Veli ile kısa ve düzenli geri bildirim</li>
+        </ul>
+        <h2>Neyi kapsamaz?</h2>
+        <p>
+          Sınav koçluğu psikolojik danışmanlık veya terapi değildir. Kaygı,
+          motivasyon veya ruh sağlığıyla ilgili ciddi bir ihtiyaç varsa ilgili
+          uzmana yönlendirme yapılır. Koçluk; çalışma düzeni ve takip
+          sorumluluğunu taşır.
+        </p>
+        <h2>Matematik dersiyle nasıl birleşir?</h2>
+        <p>
+          Matematik dersinde konu ve soru çözümü öne çıkar. Koçlukta ise haftalık
+          plan, ödev düzeni ve deneme analizi takip edilir. İhtiyaca göre ikisi
+          birlikte ya da yalnızca koçluk şeklinde planlanabilir.
+        </p>
+        <h2>Kimler için uygun?</h2>
+        <ul>
+          <li>LGS'ye hazırlanan 8. sınıf öğrencileri.</li>
+          <li>TYT-AYT'ye hazırlanan 11-12. sınıf öğrencileri.</li>
+          <li>Mezun olup düzenli program arayanlar.</li>
+          <li>Plan kurmakta zorlanan, erteleyen öğrenciler.</li>
+        </ul>
+      </div>
+      <aside class="card">
+        <h3>Haftalık akış</h3>
+        <ol>
+          <li>Pazar/başlangıç: haftalık plan paylaşılır.</li>
+          <li>Hafta içi: ödev ve soru takibi yapılır.</li>
+          <li>Deneme sonrası: yanlış analizi ve hedef güncellemesi.</li>
+          <li>Hafta sonu: kısa değerlendirme ve veli bilgilendirmesi.</li>
+        </ol>
+        <p class="form-note">
+          Takip sıklığı ve iletişim kanalı başlangıçta netleştirilir.
+        </p>
+        <a class="btn btn-secondary btn-sm" href="/yontem">Yöntemi gör</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Süreç</p>
+        <h2>Koçluk nasıl başlıyor?</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Tanışma</h3>
+          <p>
+            Hedef, mevcut düzen, okul takvimi ve veli beklentisi konuşulur.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Plan</h3>
+          <p>
+            Haftalık ders, ödev ve deneme planı birlikte kurulur; gerçekçi
+            hedefler belirlenir.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Takip</h3>
+          <p>
+            Plan uygulanır, deneme sonuçları analiz edilir ve veliyle düzenli
+            geri bildirim paylaşılır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Güven</p>
+        <h2>Şeffaf takip, gerçekçi hedef</h2>
+        <p class="lead">
+          Koçlukta “garanti net” vaadi yok. Haftalık plan, ödev takibi ve deneme
+          analiziyle süreç görünür hale geliyor.
+        </p>
+        <p>
+          Veliler, Google İşletme Profili'ndeki yorumları inceleyebilir; süreçle
+          ilgili soruları doğrudan WhatsApp'tan sorabilir.
+        </p>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>Sınav koçluğu hakkında</h2>
+      </div>
+      <FaqList faqs={coachingFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Sınav dönemini plansız geçirmeyin."
+    text="Hedef, sınıf ve mevcut düzeninizi yazın; koçluk ve matematik desteğini birlikte planlayalım."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

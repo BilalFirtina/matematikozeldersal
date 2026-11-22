@@ -1,0 +1,67 @@
+---
+import { site, waLink } from '../data/site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true">AM</span>
+      <span class="brand-text">
+        <span class="brand-name">Adana Matematik</span>
+        <span class="brand-sub">Matematik Özel Ders</span>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Ana menü">
+      {site.nav.map((item) => (
+        <a
+          class="nav-link"
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <a class="phone-link" href={site.phoneHref} aria-label={`Telefon: ${site.phoneDisplay}`}>
+        <span aria-hidden="true">☎</span>
+        {site.phoneDisplay}
+      </a>
+
+      <details class="mobile-menu menu-toggle">
+        <summary aria-label="Menüyü aç">Menü</summary>
+        <div class="mobile-menu-panel">
+          {site.nav.map((item) => (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          ))}
+          <a class="btn btn-primary btn-block btn-sm" href={waLink()} target="_blank" rel="noopener">
+            WhatsApp'tan yaz
+          </a>
+          <a class="btn btn-secondary btn-block btn-sm" href={site.phoneHref}>
+            {site.phoneDisplay}
+          </a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('click', (event) => {
+    document.querySelectorAll('details.mobile-menu[open]').forEach((details) => {
+      if (details instanceof HTMLDetailsElement && !details.contains(event.target)) {
+        details.removeAttribute('open');
+      }
+    });
+  });
+</script>

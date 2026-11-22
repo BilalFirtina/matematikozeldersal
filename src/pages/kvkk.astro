@@ -1,0 +1,99 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+---
+
+<LegalLayout
+  title="KVKK Aydınlatma Metni"
+  description="Adana Matematik Özel Ders - Dilber Öğretmen tarafından kişisel verilerin işlenmesine ilişkin KVKK aydınlatma metni."
+  path="/kvkk"
+>
+  <p>
+    Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında,
+    <strong>{site.legalName}</strong> tarafından kişisel verilerinizin nasıl
+    işlendiğini açıklamak için hazırlanmıştır.
+  </p>
+
+  <h2>Veri sorumlusu</h2>
+  <p>
+    Veri sorumlusu: {site.legalName}<br />
+    İletişim: <a href={`mailto:${site.email}`}>{site.email}</a> ·{' '}
+    <a href={site.phoneHref}>{site.phoneDisplay}</a><br />
+    Adres bilgisi: {site.address.display} (tam adres, randevu onayından sonra paylaşılır)
+  </p>
+
+  <h2>İşlenen kişisel veriler</h2>
+  <ul>
+    <li>İletişim formu: ad, telefon, sınıf düzeyi, hedef, isteğe bağlı not.</li>
+    <li>WhatsApp ve telefon görüşmeleri: iletişim içeriği ve ders planlaması için paylaştığınız bilgiler.</li>
+    <li>Ders süreci: ders konusu, ödev takibi, deneme sonuçları ve veli raporu için gerekli bilgiler.</li>
+    <li>Teknik veriler: siteyi kullanırken oluşan temel erişim kayıtları; çerez tercihi.</li>
+  </ul>
+  <p>
+    Öğrencinin sağlık, din, etnik köken gibi özel nitelikli kişisel verileri
+    talep edilmez. Lütfen form veya WhatsApp üzerinden bu tür bilgileri
+    paylaşmayın.
+  </p>
+
+  <h2>İşleme amaçları</h2>
+  <ul>
+    <li>Bilgi talebinize dönüş yapmak ve ders planlaması yapmak.</li>
+    <li>Ders, ödev, deneme ve veli raporu sürecini yürütmek.</li>
+    <li>İletişim ve randevu koordinasyonunu sağlamak.</li>
+    <li>Yasal yükümlülükleri yerine getirmek.</li>
+    <li>Açık rızanız varsa site kullanımını anonim ölçümlemek.</li>
+  </ul>
+
+  <h2>Hukuki sebep</h2>
+  <p>
+    Veriler; sözleşmenin kurulması veya ifası, hukuki yükümlülüklerin yerine
+    getirilmesi, meşru menfaat ve gerektiğinde açık rıza hukuki sebeplerine
+    dayanılarak işlenir. Pazarlama amaçlı iletişim için ayrıca açık rıza
+    aranır.
+  </p>
+
+  <h2>Saklama ve paylaşım</h2>
+  <p>
+    Kişisel veriler, işleme amacının gerektirdiği süre boyunca saklanır. Süre
+    sonunda silinir, yok edilir veya anonim hale getirilir. Veriler; yasal
+    zorunluluklar dışında üçüncü kişilerle satılmaz, kiralanmaz veya ticari
+    amaçla paylaşılmaz. Barındırma, e-posta, WhatsApp veya ölçümleme gibi
+    hizmet sağlayıcıları yalnızca hizmetin gerektirdiği ölçüde veri işleyebilir.
+  </p>
+
+  <h2>Çocukların verileri</h2>
+  <p>
+    Reşit olmayan öğrenciler için bilgi talebi ve ders süreci veli veya yasal
+    temsilci üzerinden yürütülür. Veli onayı olmadan öğrenciye ait kişisel veri
+    işlenmez.
+  </p>
+
+  <h2>Haklarınız</h2>
+  <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+  <ul>
+    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme.</li>
+    <li>İşlenmişse buna ilişkin bilgi talep etme.</li>
+    <li>İşlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme.</li>
+    <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri öğrenme.</li>
+    <li>Eksik veya yanlış işlenmiş verilerin düzeltilmesini isteme.</li>
+    <li>Silinmesini veya yok edilmesini isteme.</li>
+    <li>Otomatik sistemlerle analiz sonucu aleyhinize bir sonucun ortaya çıkmasına itiraz etme.</li>
+    <li>Kanuna aykırı işleme nedeniyle zarara uğramanız halinde tazminat talep etme.</li>
+  </ul>
+  <p>
+    Talepleriniz için <a href={`mailto:${site.email}`}>{site.email}</a> adresine
+    yazabilirsiniz. Başvurular en kısa sürede, en geç yasal süre içinde
+    yanıtlanır.
+  </p>
+
+  <h2>Çerezler</h2>
+  <p>
+    Zorunlu olmayan ölçümleme çerezleri yalnızca izninizle çalışır. Ayrıntılar
+    için <a href="/cerez-politikasi">çerez politikası</a> sayfasına bakabilirsiniz.
+  </p>
+
+  <p class="form-note">
+    Bu metin genel bilgilendirme amaçlıdır; hukuki danışmanlık yerine geçmez.
+    Nihai metnin bir hukuk uzmanı tarafından kontrol edilmesi önerilir.
+  </p>
+</LegalLayout>

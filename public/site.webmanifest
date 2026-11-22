@@ -1,0 +1,18 @@
+{
+  "name": "Adana Matematik Özel Ders",
+  "short_name": "Adana Matematik",
+  "description": "Adana'da yüz yüze, Türkiye geneli online matematik özel dersi.",
+  "lang": "tr-TR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f2e8",
+  "theme_color": "#0e5a54",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+---
+import type { Program } from '../data/programs';
+
+interface Props {
+  program: Program;
+}
+
+const { program } = Astro.props;
+---
+
+<article class="card program-card">
+  <span class="program-eyebrow">{program.eyebrow}</span>
+  <h3 class="program-title">{program.title}</h3>
+  <p class="muted">{program.summary}</p>
+  <ul class="program-list">
+    {program.bullets.map((bullet) => <li>{bullet}</li>)}
+  </ul>
+  <a class="program-link" href={program.slug}>Detayları gör →</a>
+</article>

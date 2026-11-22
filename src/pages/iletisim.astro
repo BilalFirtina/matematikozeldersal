@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { site, waLink } from '../data/site';
+import { districts } from '../data/districts';
+import { webpageSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'İletişim | Adana Matematik Özel Ders';
+const description =
+  "Adana Matematik Özel Ders ile iletişime geçin. WhatsApp, telefon veya bilgi formu; Seyhan, Çukurova, Yüreğir ve Sarıçam'da yüz yüze, Türkiye geneli online.";
+const path = '/iletisim';
+
+const contactSchema = {
+  '@type': 'ContactPage',
+  '@id': `${site.url}/iletisim#contactpage`,
+  url: `${site.url}/iletisim`,
+  name: title,
+  description,
+  isPartOf: { '@id': `${site.url}/#website` },
+  about: { '@id': `${site.url}/#organization` },
+};
+
+const schemas = [
+  contactSchema,
+  webpageSchema(path, title, description),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'İletişim', path },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'İletişim', path }]} />
+      <p class="eyebrow">İletişim</p>
+      <h1>Bilgi almak için yazın</h1>
+      <p class="lead">
+        Sınıf, hedef ve uygun ders saatini paylaşın; yüz yüze veya online seçenek
+        için en kısa sürede dönüş yapalım.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-card">
+        <h2 class="mt-0">Doğrudan iletişim</h2>
+        <p class="muted">
+          WhatsApp en hızlı kanal. Telefonla da ulaşabilirsiniz; ders sırasında
+          yanıt gecikebilir.
+        </p>
+        <ul class="contact-list">
+          <li>
+            <span class="contact-label">Telefon / WhatsApp</span>
+            <a class="contact-value" href={site.phoneHref}>{site.phoneDisplay}</a>
+          </li>
+          <li>
+            <span class="contact-label">E-posta</span>
+            <a class="contact-value" href={`mailto:${site.email}`}>{site.email}</a>
+          </li>
+          <li>
+            <span class="contact-label">Hizmet alanı</span>
+            <span class="contact-value">{site.serviceAreas.join(', ')}</span>
+          </li>
+          <li>
+            <span class="contact-label">Online</span>
+            <span class="contact-value">Türkiye geneli · {site.onlinePlatforms}</span>
+          </li>
+          <li>
+            <span class="contact-label">Ders saati</span>
+            <span class="contact-value">{site.hours} · 60 dakika</span>
+          </li>
+          <li>
+            <span class="contact-label">Adres</span>
+            <span class="contact-value">
+              {site.address.display} — tam adres randevu onayından sonra paylaşılır.
+            </span>
+          </li>
+        </ul>
+        <div class="btn-group mt-3">
+          <a class="btn btn-primary" href={waLink()} target="_blank" rel="noopener">
+            WhatsApp'tan yaz
+          </a>
+          <a class="btn btn-secondary" href={site.mapUrl} target="_blank" rel="noopener">
+            Bölgeyi haritada gör
+          </a>
+        </div>
+        <p class="form-note mt-2">
+          Site üzerinden ödeme veya satış yapılmaz. Ders ve ücret koşulları
+          görüşmede netleştirilir.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mt-0">Bilgi talebi formu</h2>
+        <p class="muted">
+          Formu doldurduğunuzda bilgiler WhatsApp mesajına dönüştürülür. Dilerseniz
+          doğrudan telefonda arayabilirsiniz.
+        </p>
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Ders yeri</p>
+        <h2>Adana'da yüz yüze seçenekler</h2>
+        <p>
+          İlçe sayfalarında ulaşım, ders yeri ve planlama detaylarını
+          bulabilirsiniz.
+        </p>
+      </div>
+      <div class="grid grid-4">
+        {districts.map((district) => (
+          <a class="district-card" href={`/adana/${district.slug}`}>
+            <strong>{district.name}</strong>
+            <span>{district.lead}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

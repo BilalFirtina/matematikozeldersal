@@ -1,0 +1,70 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+---
+
+<LegalLayout
+  title="Çerez Politikası"
+  description="Adana Matematik Özel Ders web sitesinde kullanılan çerezler ve tercih yönetimi."
+  path="/cerez-politikasi"
+>
+  <p>
+    Bu politika, <strong>{site.legalName}</strong> web sitesinde kullanılan
+    çerezleri ve benzeri teknolojileri açıklar.
+  </p>
+
+  <h2>Hangi çerezler kullanılıyor?</h2>
+  <p>
+    Site temel olarak çerez kullanmadan çalışacak şekilde tasarlanmıştır. Çerez
+    tercihiniz, tekrar sormamak için tarayıcınızın yerel depolama alanında
+    saklanır.
+  </p>
+  <ul>
+    <li>
+      <strong>Zorunlu / işlevsel:</strong> Çerez tercihinizi hatırlamak için
+      kullanılan yerel kayıt. Bu kayıt olmadan tercih her ziyarette yeniden
+      sorulur.
+    </li>
+    <li>
+      <strong>Ölçümleme (isteğe bağlı):</strong> Yalnızca “Kabul et” seçeneğini
+      seçerseniz Google Analytics 4 ve/veya Microsoft Clarity yüklenebilir. Bu
+      araçlar site kullanımını anonim veya toplu olarak ölçmek için çerez
+      kullanabilir.
+    </li>
+    <li>
+      <strong>Reklam çerezi:</strong> Site üzerinde reklam ağı çerezi
+      kullanılmamaktadır.
+    </li>
+  </ul>
+
+  <h2>Tercihinizi yönetme</h2>
+  <p>
+    Site ilk açıldığında çıkan çerez bildiriminden “Kabul et” veya “Sadece
+    zorunlu” seçeneğini seçebilirsiniz. Tercihinizi değiştirmek için
+    tarayıcınızın site verilerini/çerezlerini temizlemeniz yeterlidir; sayfa
+    yenilendiğinde bildirim tekrar görünür.
+  </p>
+  <p>
+    Tarayıcı ayarlarınızdan çerezleri tamamen engelleyebilirsiniz. Bu durumda
+    sitenin bazı kolaylıkları (tercih hatırlama gibi) çalışmayabilir.
+  </p>
+
+  <h2>Üçüncü taraf hizmetleri</h2>
+  <p>
+    Site; WhatsApp, Google Maps ve Google yorumları gibi üçüncü taraf
+    bağlantılar içerebilir. Bu hizmetlere tıkladığınızda ilgili sağlayıcının
+    çerez ve gizlilik politikaları geçerli olur.
+  </p>
+
+  <h2>Daha fazla bilgi</h2>
+  <p>
+    Kişisel verilerin işlenmesi hakkında{' '}
+    <a href="/kvkk">KVKK aydınlatma metnine</a>, genel gizlilik yaklaşımımız için{' '}
+    <a href="/gizlilik">gizlilik politikasına</a> bakabilirsiniz. Sorularınız
+    için <a href={`mailto:${site.email}`}>{site.email}</a> adresine yazabilirsiniz.
+  </p>
+
+  <p class="form-note">
+    Bu metin genel bilgilendirme amaçlıdır; hukuki danışmanlık yerine geçmez.
+  </p>
+</LegalLayout>

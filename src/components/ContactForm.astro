@@ -1,0 +1,163 @@
+---
+import { site } from '../data/site';
+import { levels } from '../data/programs';
+
+const goals = [
+  'LGS matematik',
+  'TYT matematik',
+  'AYT matematik',
+  'Okul matematiği',
+  'Sınav koçluğu',
+  'Diğer',
+];
+---
+
+<form
+  class="form"
+  id="contact-form"
+  data-whatsapp={site.whatsapp}
+  data-endpoint={site.formEndpoint || undefined}
+  aria-describedby="form-note"
+>
+  <div class="form-row">
+    <div class="form-field">
+      <label for="name">Adınız</label>
+      <input class="input" id="name" name="name" type="text" autocomplete="name" required />
+    </div>
+    <div class="form-field">
+      <label for="phone">Telefon</label>
+      <input
+        class="input"
+        id="phone"
+        name="phone"
+        type="tel"
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder="05xx xxx xx xx"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="grade">Sınıf düzeyi</label>
+      <select class="select" id="grade" name="grade" required>
+        <option value="">Seçiniz</option>
+        {levels.map((level) => <option value={level}>{level}</option>)}
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="goal">Hedefiniz</label>
+      <select class="select" id="goal" name="goal" required>
+        <option value="">Seçiniz</option>
+        {goals.map((goal) => <option value={goal}>{goal}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="message">Kısa not (isteğe bağlı)</label>
+    <textarea
+      class="textarea"
+      id="message"
+      name="message"
+      placeholder="Örn. 8. sınıftayım, LGS'ye hazırlanıyorum; haftada 1 ders düşünüyorum."
+    ></textarea>
+  </div>
+
+  <label class="checkbox" for="kvkk">
+    <input id="kvkk" name="kvkk" type="checkbox" required />
+    <span>
+      <a href="/kvkk" target="_blank" rel="noopener">KVKK aydınlatma metnini</a> okudum;
+      bilgilerimin iletişim amacıyla işlenmesini kabul ediyorum.
+    </span>
+  </label>
+
+  <div class="honeypot" aria-hidden="true">
+    <label for="website">Website</label>
+    <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <button class="btn btn-primary btn-block" type="submit">Bilgi talebi gönder</button>
+  <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+  <p class="form-note" id="form-note">
+    Form, bilgi talebinizi WhatsApp üzerinden iletmek için hazırlanır. Site üzerinden
+    ödeme veya satış yapılmaz. Dilerseniz doğrudan{' '}
+    <a href={site.phoneHref}>{site.phoneDisplay}</a> numarasını arayabilirsiniz.
+  </p>
+
+  <noscript>
+    <p class="notice">
+      Formu göndermek için JavaScript gerekir. Doğrudan{' '}
+      <a href={site.phoneHref}>{site.phoneDisplay}</a> numarasını arayabilir veya
+      WhatsApp'tan yazabilirsiniz.
+    </p>
+  </noscript>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form');
+
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      if (String(data.get('website') || '').trim()) return;
+
+      const name = String(data.get('name') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      const grade = String(data.get('grade') || '').trim();
+      const goal = String(data.get('goal') || '').trim();
+      const note = String(data.get('message') || '').trim();
+      const whatsapp = form.dataset.whatsapp || '';
+      const endpoint = form.dataset.endpoint || '';
+      const status = document.getElementById('form-status');
+
+      const text = [
+        'Merhaba, matematik özel ders hakkında bilgi almak istiyorum.',
+        `Adım: ${name}`,
+        `Telefon: ${phone}`,
+        `Sınıf: ${grade}`,
+        `Hedef: ${goal}`,
+        note ? `Not: ${note}` : '',
+      ]
+        .filter(Boolean)
+        .join('\n');
+
+      const waUrl = `https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}`;
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'form_submit' });
+
+      if (endpoint) {
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, phone, grade, goal, note }),
+          keepalive: true,
+        }).catch(() => undefined);
+      }
+
+      const opened = window.open(waUrl, '_blank', 'noopener');
+
+      if (opened) {
+        window.location.assign('/tesekkurler');
+        return;
+      }
+
+      if (status) {
+        status.textContent = 'WhatsApp penceresi açılamadı. ';
+        const link = document.createElement('a');
+        link.href = waUrl;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = "WhatsApp'ı aç";
+        status.appendChild(link);
+        status.classList.add('is-visible');
+      }
+    });
+  }
+</script>

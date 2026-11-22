@@ -1,0 +1,73 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { site } from '../data/site';
+---
+
+<LegalLayout
+  title="Ders Koşulları"
+  description="Adana Matematik Özel Ders - Dilber Öğretmen birebir ders koşulları: planlama, iptal, ders yeri, online ders, ödeme ve iletişim."
+  path="/ders-kosullari"
+>
+  <p>
+    Bu sayfa, <strong>{site.legalName}</strong> tarafından verilen birebir
+    matematik derslerinin genel çerçevesini açıklar. Kesin koşullar, ders
+    başlamadan önce yazılı olarak ayrıca paylaşılır.
+  </p>
+
+  <h2>Dersler</h2>
+  <ul>
+    <li>Dersler birebir ve 60 dakikadır.</li>
+    <li>Yüz yüze veya online (Google Meet / Zoom) yapılabilir.</li>
+    <li>Ders içeriği; sınıf, hedef ve seviye tespiti sonucuna göre planlanır.</li>
+    <li>Ders materyalleri öğrencinin sınıfına ve hedefine göre belirlenir.</li>
+  </ul>
+
+  <h2>Ders yeri ve güvenlik</h2>
+  <ul>
+    <li>Yüz yüze dersler öğrencinin evinde veya Seyhan/Tellidere çevresindeki ders alanında yapılır.</li>
+    <li>Tam adres, güvenlik ve mahremiyet için randevu onayından sonra paylaşılır.</li>
+    <li>Öğrencinin evinde derste velinin bulunması tercih edilir.</li>
+    <li>Ders sırasında üçüncü kişilerin izinsiz kayıt alması kabul edilmez.</li>
+  </ul>
+
+  <h2>Planlama ve iptal</h2>
+  <ul>
+    <li>Ders saatleri, öğrencinin okul takvimi ve ailenin uygunluğuna göre planlanır.</li>
+    <li>Ders saatinden en az 24 saat önce yapılan iptal veya erteleme talepleri için yeni saat planlanabilir.</li>
+    <li>24 saatten kısa sürede yapılan iptallerde ders ücreti koşulları görüşmede netleştirilir.</li>
+    <li>Öğretmenin zorunlu bir nedenle iptal etmesi halinde ders telafi edilir veya ücret iadesi yapılır.</li>
+  </ul>
+
+  <h2>Online ders</h2>
+  <ul>
+    <li>Kamera, mikrofon ve stabil internet bağlantısı gerekir.</li>
+    <li>Ders öncesi kısa bir bağlantı testi yapılır.</li>
+    <li>Teknik sorun nedeniyle ders yapılamazsa telafi saati planlanır.</li>
+    <li>Ders kaydı, ancak tarafların açık onayıyla alınabilir.</li>
+  </ul>
+
+  <h2>Ödeme</h2>
+  <ul>
+    <li>Site üzerinden ödeme veya satış yapılmaz.</li>
+    <li>Ödeme, fatura ve paket koşulları ders başlamadan önce netleştirilir.</li>
+    <li>Ücretler sitede yayınlanmaz; güncel bilgi doğrudan paylaşılır.</li>
+  </ul>
+
+  <h2>İletişim</h2>
+  <p>
+    Ders ve randevu iletişimi için WhatsApp veya telefon kullanılır. Ders
+    saatlerinde yanıt gecikebilir; mesajınız en kısa sürede yanıtlanır.
+  </p>
+
+  <h2>Sonuçlar hakkında</h2>
+  <p>
+    Derslerde başarı garanti edilmez. İlerleme; öğrencinin düzenli katılımı,
+    ödev takibi, çalışma düzeni ve sınav performansına bağlıdır. Amaç, gerçekçi
+    hedefler ve ölçülebilir bir süreç kurmaktır.
+  </p>
+
+  <p class="form-note">
+    Bu metin genel bilgilendirme amaçlıdır; hukuki danışmanlık yerine geçmez.
+    Güncel ve kişiye özel koşullar ders öncesinde yazılı olarak paylaşılır.
+  </p>
+</LegalLayout>

@@ -1,0 +1,47 @@
+media: public/images
+content:
+  - name: blog
+    label: Blog Yazıları
+    type: collection
+    path: src/content/blog
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, pubDate, category, draft]
+    fields:
+      - name: title
+        label: Başlık
+        type: string
+        required: true
+      - name: description
+        label: Açıklama
+        type: text
+        required: true
+      - name: pubDate
+        label: Yayın Tarihi
+        type: date
+        required: true
+      - name: updatedDate
+        label: Güncelleme Tarihi
+        type: date
+      - name: category
+        label: Kategori
+        type: select
+        options:
+          values:
+            - LGS
+            - TYT-AYT
+            - Adana
+            - Online
+            - Koçluk
+            - Veli Rehberi
+      - name: readingTime
+        label: Okuma Süresi
+        type: string
+        default: "7 dk"
+      - name: draft
+        label: Taslak
+        type: boolean
+        default: false
+      - name: body
+        label: İçerik
+        type: rich-text

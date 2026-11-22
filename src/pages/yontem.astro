@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, waLink } from '../data/site';
+import { webpageSchema, serviceSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Ders Yöntemi | Seviye Tespiti, Plan ve Takip';
+const description =
+  "Matematik özel ders yöntemi: seviye tespiti, kişiye özel haftalık plan, ödev takibi ve aylık veli raporu. Adana'da yüz yüze veya online.";
+const path = '/yontem';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  serviceSchema({
+    name: 'Birebir matematik özel ders yöntemi',
+    description:
+      'Seviye tespiti, kişiye özel plan, haftalık takip ve aylık veli raporu ile yürütülen birebir matematik dersi.',
+    path,
+    serviceType: 'Matematik özel ders',
+    area: 'both',
+  }),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Ders Yöntemi', path },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Ders Yöntemi', path }]} />
+      <p class="eyebrow">Yöntem</p>
+      <h1>Ders Nasıl İşliyor?</h1>
+      <p class="lead">
+        Her öğrenci aynı yerden başlamaz. Önce seviyeyi ölçüyor, sonra hedefe
+        göre bir plan kuruyor ve ilerlemeyi düzenli takip ediyoruz.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, ders yöntemi ve uygunluk hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="/ucretler">Ücretler</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Dört adım</p>
+        <h2>Seviye tespitinden veli raporuna</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Tanışma</h3>
+          <p>
+            Sınıf, hedef, okul takvimi ve beklentiler konuşulur. Yüz yüze mi
+            online mı daha uygun, birlikte karar verilir.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Seviye tespiti</h3>
+          <p>
+            Kısa bir test ve soru-cevap ile güçlü ve eksik konular belirlenir.
+            Öğrencinin çalışma alışkanlığı da gözlenir.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Kişiye özel plan</h3>
+          <p>
+            Haftalık ders, ödev ve tekrar planı hazırlanır. Sınav tarihine göre
+            konu önceliği belirlenir.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Takip ve rapor</h3>
+          <p>
+            Her dersin özeti paylaşılır; ödevler kontrol edilir. Aylık veli
+            raporuyla gelişim özetlenir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Bir ders saatinde ne oluyor?</h2>
+        <ol>
+          <li>Önceki dersin ödevi ve takılan sorular konuşulur.</li>
+          <li>Kısa konu tekrarı yapılır.</li>
+          <li>Yeni konu anlatılır; örnek sorular birlikte çözülür.</li>
+          <li>Öğrenci kendi başına soru çözer; çözümünü anlatır.</li>
+          <li>Ders sonunda özet ve ödev planı paylaşılır.</li>
+        </ol>
+        <h2>Ders dışında ne oluyor?</h2>
+        <p>
+          Ödevler bir sonraki derste kontrol edilir. Öğrenci takıldığı soruları
+          WhatsApp üzerinden paylaşabilir; dönüş saatleri başlangıçta
+          netleştirilir. Her ay işlenen konular, ödev durumu ve deneme sonuçları
+          kısa bir raporla veliye iletilir.
+        </p>
+        <h2>Neler beklenmeli?</h2>
+        <p>
+          Dersler 60 dakika ve birebir. Yüz yüze derslerde öğrencinin evi veya
+          Seyhan/Tellidere çevresindeki ders alanı kullanılır. Online derslerde
+          Google Meet veya Zoom, ekran paylaşımı ve dijital not kullanılır.
+        </p>
+        <p>
+          Başarı garantisi verilmez; düzenli katılım, ödev takibi ve veli
+          iletişimi sürecin temelidir.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Veli raporunda ne var?</h3>
+        <ul>
+          <li>İşlenen konular</li>
+          <li>Ödev tamamlama durumu</li>
+          <li>Deneme/test sonuçları</li>
+          <li>Güçlü ve eksik konular</li>
+          <li>Bir sonraki ayın hedefleri</li>
+        </ul>
+        <p class="form-note">
+          Rapor örneği, öğrenci bilgileri gizlenerek paylaşılabilir.
+        </p>
+        <a class="btn btn-secondary btn-sm" href="/sss">Sıkça sorulanlar</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Uyum</p>
+        <h2>Hangi format size uygun?</h2>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>Yüz yüze</h3>
+          <p class="muted">
+            Adana'da Seyhan, Çukurova, Yüreğir veya Sarıçam'da. Öğrencinin evi
+            ya da Seyhan/Tellidere çevresindeki ders alanı.
+          </p>
+          <a class="program-link" href="/adana-matematik-ozel-ders">Adana sayfası →</a>
+        </article>
+        <article class="card">
+          <h3>Online</h3>
+          <p class="muted">
+            Türkiye'nin her yerinden. Google Meet veya Zoom, 60 dakika, ekran
+            paylaşımı ve düzenli ödev takibi.
+          </p>
+          <a class="program-link" href="/online-matematik-ozel-ders">Online sayfası →</a>
+        </article>
+        <article class="card">
+          <h3>Koçluk</h3>
+          <p class="muted">
+            Haftalık plan, deneme analizi ve veli iletişimi. Matematik dersini
+            destekler; yerine geçmez.
+          </p>
+          <a class="program-link" href="/sinav-koclugu">Koçluk sayfası →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Yöntemi konuşalım, planı birlikte kuralım."
+    text="Sınıf ve hedefinizi yazın; seviye tespiti ve ders planı için ilk adımı atalım."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

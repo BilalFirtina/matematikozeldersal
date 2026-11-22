@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { webpageSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Google Yorumları | Adana Matematik Özel Ders';
+const description =
+  "Adana Matematik Özel Ders - Dilber Öğretmen Google İşletme Profili yorumları. Velilerin ve öğrencilerin gerçek değerlendirmelerini inceleyin.";
+const path = '/yorumlar';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Google Yorumları', path },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Google Yorumları', path }]} />
+      <p class="eyebrow">Veliler ve öğrenciler</p>
+      <h1>Gerçek Yorumlar, Şeffaf Süreç</h1>
+      <p class="lead">
+        Yorumlar Google İşletme Profili'nde yayınlanıyor. Sitede yorum
+        uydurmuyoruz; gerçek deneyimleri görebileceğiniz Google bağlantısını
+        paylaşıyoruz.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={site.googleReviewsUrl} target="_blank" rel="noopener">
+          Google'da yorumları gör
+        </a>
+        <a class="btn btn-secondary" href={waLink('Merhaba, veli yorumları ve ders süreci hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan sor
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Neden Google yorumları?</h2>
+        <p>
+          Google yorumları, velilerin ve öğrencilerin deneyimlerini doğrudan
+          paylaştığı bir alan. Yorumların silinmemesi, düzenlenmemesi ve
+          filtrelenmemesi bizim için önemli. Bu yüzden site üzerinde ayrı bir
+          “müşteri yorumu” kurgusu kullanmıyoruz.
+        </p>
+        <h2>Yorum bırakmak isterseniz</h2>
+        <ol>
+          <li>Google İşletme Profili sayfasını açın.</li>
+          <li>“Yorum yaz” veya “Değerlendir” seçeneğine tıklayın.</li>
+          <li>Deneyiminizi kısa ve açık şekilde paylaşın.</li>
+        </ol>
+        <p>
+          Yorumlarınızda öğrencinin adı, okulu veya özel bilgileri paylaşmanız
+          gerekmez. Kısa bir deneyim notu yeterli.
+        </p>
+        <h2>Yorumlara nasıl yaklaşıyoruz?</h2>
+        <p>
+          Olumsuz bir deneyim varsa dinlemek ve çözmek isteriz. Yorumlara kısa,
+          saygılı ve çözüm odaklı yanıt veriyoruz. Yorum karşılığında indirim
+          veya hediye teklif etmiyoruz.
+        </p>
+      </div>
+      <aside>
+        <ReviewLink />
+        <div class="card mt-2">
+          <h3>Yorumlarda nelere bakabilirsiniz?</h3>
+          <ul>
+            <li>Öğretmenin iletişimi</li>
+            <li>Dersin planlı ilerleyip ilerlemediği</li>
+            <li>Ödev ve takip düzeni</li>
+            <li>Veli bilgilendirmesi</li>
+            <li>Öğrencinin motivasyonu</li>
+          </ul>
+          <p class="form-note">
+            Yorumlar kişisel deneyimdir; her öğrencinin sonucu aynı olmayabilir.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Deneyimi siz de konuşarak değerlendirin."
+    text="Sınıf, hedef ve beklentinizi paylaşın; ders sürecini ve uygunluğu birlikte netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

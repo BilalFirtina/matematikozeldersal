@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { tytFaqs } from '../data/faqs';
+import { webpageSchema, courseSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'TYT Matematik Özel Ders | Adana ve Online | Dilber Öğretmen';
+const description =
+  "TYT matematik özel dersi; temel eksikleri kapatma, soru tipi pratiği, süre yönetimi ve deneme takibi. Adana'da yüz yüze veya online. Dilber Öğretmen, 10 yıl deneyim.";
+const path = '/tyt-matematik-ozel-ders';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  courseSchema({
+    name: 'TYT matematik özel ders',
+    description:
+      'TYT matematik için birebir ders; temel eksikler, soru tipi stratejisi ve deneme takibi.',
+    path,
+    mode: 'blended',
+    educationalLevel: '9-12. sınıf ve mezun',
+    teaches: ['TYT matematik', 'Temel matematik', 'Soru stratejisi', 'Zaman yönetimi'],
+  }),
+  faqSchema(tytFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'TYT Matematik Özel Ders', path },
+  ]),
+];
+
+const facts = [
+  { label: 'Hedef', value: 'TYT matematik' },
+  { label: 'Sınıf', value: '9-12. sınıf ve mezun' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Format', value: 'Adana’da yüz yüze veya online' },
+  { label: 'Takip', value: 'Haftalık plan + deneme analizi' },
+  { label: 'Ücret', value: "WhatsApp'tan güncel bilgi" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'TYT Matematik Özel Ders', path }]} />
+      <p class="eyebrow">9-12. sınıf · Mezun</p>
+      <h1>TYT Matematik Özel Ders</h1>
+      <p class="lead">
+        Temel eksikleri kapatıp soru tipi, hız ve zaman yönetimini birlikte
+        geliştiren TYT matematik programı. Adana'da yüz yüze veya online.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, TYT matematik özel ders hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#net">Net stratejisi</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="TYT ders özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="net">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>TYT matematikte net nasıl artar?</h2>
+        <p>
+          TYT matematikte net artışı genellikle üç başlıkta yaşanır: temel konu
+          eksiklerinin kapanması, soru tipi pratiği ve sınav sırasında zaman
+          yönetimi. Üçü birlikte ilerlemezse netler dalgalı kalabilir.
+        </p>
+        <h3>Temel eksikleri kapatmak</h3>
+        <p>
+          İlk adımda kısa bir seviye tespiti yapıyoruz. İşlem hatası mı, konu
+          eksiği mi, yoksa soruyu okuma sorunu mu olduğunu ayırıyoruz. Temel
+          konularda eksik varsa önce onları kapatıyoruz; çünkü TYT'de sorular
+          birbirini besleyen konulardan oluşuyor.
+        </p>
+        <h3>Soru tipi pratiği</h3>
+        <p>
+          Aynı konunun farklı soru tiplerini görmek gerekir. Derslerde konu
+          anlatımından sonra kısa test, ardından karışık soru seti çözüyoruz.
+          Öğrencinin çözümü kendi cümleleriyle anlatması, öğrenmeyi kalıcı hale
+          getiriyor.
+        </p>
+        <h3>Zaman yönetimi</h3>
+        <p>
+          Denemelerde süre tutuyoruz. Hangi soruların önce çözüleceği, hangi
+          sorunun işaretlenip geçileceği ve son kontrol için ne kadar süre
+          ayrılacağı birlikte planlanıyor.
+        </p>
+        <h2>8 haftalık net planı</h2>
+        <p>
+          20 net civarından 30 net bandına yaklaşmak için konu önceliği, hata
+          analizi ve deneme takibini içeren bir çerçeve hazırladım. Yazının
+          tamamını okuyabilirsiniz:
+          <a href="/blog/tyt-matematik-20-netten-30-nete">TYT matematikte 20 netten 30 nete</a>.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Kimler için uygun?</h3>
+        <ul>
+          <li>Temeli zayıf, nereden başlayacağını bilmeyenler.</li>
+          <li>Konuları bilen ama neti oturmayanlar.</li>
+          <li>Denemede süre yetiştiremeyenler.</li>
+          <li>Mezun olup düzenli program arayanlar.</li>
+          <li>Online dersle Türkiye'nin her yerinden çalışmak isteyenler.</li>
+        </ul>
+        <p class="form-note">
+          TYT matematik kapsamındaki konular öğrencinin ihtiyacına göre
+          planlanır.
+        </p>
+        <a class="btn btn-secondary btn-sm" href="/online-matematik-ozel-ders">Online seçenek</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Süreç</p>
+        <h2>Dersler nasıl ilerliyor?</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Seviye tespiti</h3>
+          <p>
+            Deneme veya karma test üzerinden konu, soru tipi ve dikkat hataları
+            ayrıştırılır.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Haftalık plan</h3>
+          <p>
+            Okul takvimi ve sınav tarihine göre konu önceliği belirlenir; her
+            hafta ödev ve soru hedefi konur.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Deneme ve analiz</h3>
+          <p>
+            Düzenli deneme, süre çalışması ve yanlış analiziyle ilerleme
+            ölçülür; plan güncellenir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Veli iletişimi</p>
+        <h2>Gelişim nasıl görünür olur?</h2>
+        <p class="lead">
+          Her dersin konusu ve ödevi WhatsApp'tan paylaşılıyor. Aylık raporda
+          işlenen konular, ödev durumu ve deneme sonuçları özetleniyor.
+        </p>
+        <p>
+          Net artışı tek bir denemeyle ölçülmez; 4-6 haftalık trende bakılır.
+          Veliyle bu çerçevede konuşuyoruz.
+        </p>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>TYT matematik hakkında</h2>
+      </div>
+      <FaqList faqs={tytFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="TYT matematikte nereden başlayacağınızı birlikte görelim."
+    text="Sınıf, mevcut net ve hedefinizi yazın; seviye tespiti ve haftalık planı netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

@@ -1,0 +1,80 @@
+---
+import { site } from '../data/site';
+
+const hasAnalytics = Boolean(site.ga4Id || site.clarityId);
+---
+
+{
+  hasAnalytics && (
+    <aside
+      class="consent-banner"
+      id="consent-banner"
+      aria-label="Çerez tercihi"
+      data-ga4={site.ga4Id}
+      data-clarity={site.clarityId}
+    >
+      <p>
+        Sitenin çalışması için gerekli çerezler kullanılır. İzin verirseniz, siteyi
+        geliştirmek için anonim ölçümleme araçlarını da yükleriz. Ayrıntılar için{' '}
+        <a href="/cerez-politikasi">çerez politikası</a>.
+      </p>
+      <div class="consent-actions">
+        <button class="btn btn-primary btn-sm" type="button" id="consent-accept">
+          Kabul et
+        </button>
+        <button class="btn btn-secondary btn-sm" type="button" id="consent-reject">
+          Sadece zorunlu
+        </button>
+      </div>
+    </aside>
+  )
+}
+
+<script>
+  const key = 'amod-consent';
+  const banner = document.getElementById('consent-banner');
+
+  function loadAnalytics() {
+    if (!banner) return;
+    const ga4 = banner.getAttribute('data-ga4');
+    const clarity = banner.getAttribute('data-clarity');
+
+    if (ga4 && !document.querySelector(`script[src*="${ga4}"]`)) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4}`;
+      document.head.appendChild(script);
+
+      const inline = document.createElement('script');
+      inline.textContent = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${ga4}', { anonymize_ip: true });
+      `;
+      document.head.appendChild(inline);
+    }
+
+    if (clarity && !document.querySelector(`script[src*="${clarity}"]`)) {
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.clarity.ms/tag/${clarity}`;
+      document.head.appendChild(script);
+    }
+  }
+
+  function setConsent(value) {
+    localStorage.setItem(key, value);
+    banner?.classList.remove('is-visible');
+    if (value === 'granted') loadAnalytics();
+  }
+
+  if (banner) {
+    const stored = localStorage.getItem(key);
+    if (!stored) banner.classList.add('is-visible');
+    if (stored === 'granted') loadAnalytics();
+
+    document.getElementById('consent-accept')?.addEventListener('click', () => setConsent('granted'));
+    document.getElementById('consent-reject')?.addEventListener('click', () => setConsent('denied'));
+  }
+</script>

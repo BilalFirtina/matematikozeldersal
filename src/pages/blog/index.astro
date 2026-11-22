@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PostCard from '../../components/PostCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { webpageSchema, breadcrumbSchema } from '../../lib/schema';
+
+const title = 'Blog | Matematik ve Sınav Rehberi';
+const description =
+  "LGS, TYT-AYT, online matematik dersi ve Adana'da özel ders seçimi üzerine uygulanabilir rehberler. Dilber Öğretmen'in blog yazıları.";
+const path = '/blog';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const schemas = [
+  webpageSchema(path, title, description),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Blog', path },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Blog', path }]} />
+      <p class="eyebrow">Rehberler</p>
+      <h1>Matematik ve Sınav Rehberi</h1>
+      <p class="lead">
+        LGS, TYT-AYT, online ders ve Adana'da özel ders seçimi üzerine
+        uygulanabilir yazılar. Ezber tavsiyeler yerine süreç ve yöntem.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p class="muted">Yazılar yakında yayınlanacak.</p>
+      ) : (
+        <div class="blog-grid">
+          {posts.map((post) => <PostCard post={post} />)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaBand
+    title="Yazıda cevabını bulamadığınız bir şey mi var?"
+    text="Sınıf, hedef ve sorunuzu WhatsApp'tan yazın; ders planı ve uygunluk için dönüş yapalım."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

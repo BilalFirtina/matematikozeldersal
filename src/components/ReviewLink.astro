@@ -1,0 +1,27 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<div class={compact ? 'review-note' : 'card review-card'}>
+  <span class="badge">Google</span>
+  <h3>Google yorumları</h3>
+  <p class="muted">
+    Velilerin ve öğrencilerin Google İşletme Profili'ndeki gerçek yorumlarını
+    inceleyebilirsiniz. Yorumlar Google üzerinde yayınlanır; site üzerinde
+    değiştirilmez.
+  </p>
+  <a
+    class="btn btn-secondary btn-sm"
+    href={site.googleReviewsUrl}
+    target="_blank"
+    rel="noopener"
+  >
+    Google'da yorumları gör
+  </a>
+</div>

@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { lgsFaqs } from '../data/faqs';
+import { webpageSchema, courseSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'LGS Matematik Özel Ders | Adana ve Online | Dilber Öğretmen';
+const description =
+  "8. sınıf LGS matematik özel dersi; yeni nesil soru mantığı, konu eksik haritası ve deneme analizi. Adana'da yüz yüze veya online. Dilber Öğretmen, 10 yıl deneyim.";
+const path = '/lgs-matematik-ozel-ders';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  courseSchema({
+    name: 'LGS matematik özel ders',
+    description:
+      '8. sınıf LGS matematik için birebir ders; yeni nesil soru çözümü, konu eksikleri ve deneme analizi.',
+    path,
+    mode: 'blended',
+    educationalLevel: '8. sınıf',
+    teaches: ['LGS matematik', 'Yeni nesil sorular', 'Deneme analizi', 'Sınav stratejisi'],
+  }),
+  faqSchema(lgsFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'LGS Matematik Özel Ders', path },
+  ]),
+];
+
+const facts = [
+  { label: 'Hedef', value: 'LGS matematik' },
+  { label: 'Sınıf', value: '8. sınıf (7. sınıftan destek mümkün)' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Format', value: 'Adana’da yüz yüze veya online' },
+  { label: 'Takip', value: 'Ödev + deneme analizi + veli raporu' },
+  { label: 'Ücret', value: "WhatsApp'tan güncel bilgi" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'LGS Matematik Özel Ders', path }]} />
+      <p class="eyebrow">8. sınıf · LGS</p>
+      <h1>LGS Matematik Özel Ders</h1>
+      <p class="lead">
+        Yeni nesil soru mantığı, konu eksik haritası ve düzenli deneme analiziyle
+        LGS matematiğinde planlı ilerleme. Adana'da yüz yüze veya online.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, LGS matematik özel ders hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#program">Programı gör</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="LGS ders özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="program">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>LGS matematikte ne çalışıyoruz?</h2>
+        <p>
+          LGS matematik, ezberden çok okuma, modelleme ve problem çözme becerisi
+          istiyor. Bu yüzden derslerde yalnızca konu anlatmıyoruz; soruyu okuma,
+          veriyi ayırma, işlem kurma ve cevabı kontrol etme rutini üzerinde
+          çalışıyoruz.
+        </p>
+        <h3>1. Konu eksik haritası</h3>
+        <p>
+          İlk adımda kısa bir seviye tespiti yapıyoruz. Çarpanlar ve katlar, üslü
+          ifadeler, kareköklü ifadeler, cebirsel ifadeler, denklemler, oran-orantı
+          ve veri işleme gibi başlıklarda eksik olan konuları sıraya koyuyoruz.
+        </p>
+        <h3>2. Yeni nesil soru rutini</h3>
+        <p>
+          Her derste en az bir yeni nesil soru seti çözüyoruz. Soruyu parçalara
+          ayırma, tablo/grafik okuma ve model kurma adımlarını birlikte
+          uyguluyoruz. Zamanla öğrenci kendi rutinini kuruyor.
+        </p>
+        <h3>3. Deneme analizi</h3>
+        <p>
+          Denemelerde yanlışlar konu, soru tipi ve dikkat hatası olarak
+          sınıflandırılıyor. Bir sonraki haftanın planı bu analize göre
+          güncelleniyor. Net kadar, netin nereden geldiği de önemli.
+        </p>
+        <h3>4. Sınav stratejisi</h3>
+        <p>
+          Hangi soruların önce çözüleceği, ne kadar süre ayrılacağı ve zor soruda
+          ne yapılacağı birlikte planlanıyor. Son haftalarda sınav ritmi
+          çalışılıyor.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>8 haftalık plan</h3>
+        <p class="muted">
+          Eksik kapatma, yeni nesil soru rutini, deneme analizi ve sınav ritmi
+          için 8 haftalık bir çerçeve.
+        </p>
+        <ul>
+          <li>1. hafta: seviye tespiti</li>
+          <li>2-3. hafta: temel eksikler</li>
+          <li>4-5. hafta: yeni nesil sorular</li>
+          <li>6. hafta: deneme analizi</li>
+          <li>7. hafta: hız ve strateji</li>
+          <li>8. hafta: genel tekrar</li>
+        </ul>
+        <a class="btn btn-secondary btn-sm" href="/blog/lgs-matematik-net-artirma-8-haftalik-plan">
+          Planı oku
+        </a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Kimler için?</p>
+        <h2>LGS desteği kimlere uygun?</h2>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>8. sınıf öğrencileri</h3>
+          <p class="muted">
+            LGS'ye hazırlanan, konu eksiklerini kapatmak ve düzenli deneme
+            takibi yapmak isteyen öğrenciler.
+          </p>
+        </article>
+        <article class="card">
+          <h3>7. sınıftan hazırlananlar</h3>
+          <p class="muted">
+            Temel eksikleri erkenden kapatmak, yeni nesil sorulara alışmak
+            isteyen 7. sınıf öğrencileri.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Neti dalgalı olanlar</h3>
+          <p class="muted">
+            Konuları bilen ama denemede neti bir türlü oturmayan; soru tipi ve
+            süre yönetimi desteği isteyenler.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Takip</p>
+        <h2>Veli raporu ve ders dışı süreç</h2>
+        <p class="lead">
+          Her dersin sonunda konu ve ödev özeti paylaşılıyor. Aylık raporda
+          işlenen konular, ödev durumu, deneme sonuçları ve bir sonraki ayın
+          hedefleri yer alıyor.
+        </p>
+        <p>
+          LGS sürecinde veli iletişimi önemli. Kısa ve düzenli geri bildirim,
+          öğrencinin baskı hissetmeden ilerlemesini kolaylaştırıyor.
+        </p>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>LGS matematik hakkında</h2>
+      </div>
+      <FaqList faqs={lgsFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="LGS için gerçekçi bir plan kuralım."
+    text="8. sınıf, hedef net ve uygun ders saatini yazın; seviye tespiti ve ders planını birlikte netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>

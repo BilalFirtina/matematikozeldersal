@@ -1,0 +1,36 @@
+---
+import { site, waLink } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  title = 'Matematikte bir sonraki adımı birlikte planlayalım.',
+  text = "Sınıf düzeyi, hedef ve uygun ders saatini konuşmak için WhatsApp'tan yazabilir veya telefonla ulaşabilirsiniz.",
+  primaryLabel = "WhatsApp'tan bilgi al",
+  primaryHref = waLink(),
+  secondaryLabel = site.phoneDisplay,
+  secondaryHref = site.phoneHref,
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="container cta-band-inner">
+    <div>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="btn-group">
+      <a class="btn" href={primaryHref} target={primaryHref.startsWith('http') ? '_blank' : undefined} rel={primaryHref.startsWith('http') ? 'noopener' : undefined}>
+        {primaryLabel}
+      </a>
+      <a class="btn btn-secondary" href={secondaryHref}>{secondaryLabel}</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import PostCard from '../../components/PostCard.astro';
+import { site } from '../../data/site';
+import { webpageSchema, articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const path = `/blog/${post.id}`;
+const title = `${post.data.title} | ${site.brand}`;
+const description = post.data.description;
+const date = post.data.pubDate.toLocaleDateString('tr-TR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+const updated = post.data.updatedDate
+  ? post.data.updatedDate.toLocaleDateString('tr-TR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
+  : null;
+
+const schemas = [
+  webpageSchema(path, title, description),
+  articleSchema({
+    title: post.data.title,
+    description,
+    path,
+    datePublished: post.data.pubDate,
+    dateModified: post.data.updatedDate,
+    category: post.data.category,
+  }),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: post.data.title, path },
+  ]),
+];
+
+const related = (await getCollection('blog', ({ data }) => !data.draft))
+  .filter((item) => item.id !== post.id)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <article>
+    <header class="article-header container">
+      <Breadcrumbs
+        items={[
+          { name: 'Blog', path: '/blog' },
+          { name: post.data.title, path },
+        ]}
+      />
+      <div class="post-meta">
+        <span class="tag">{post.data.category}</span>
+        <span>{date}</span>
+        <span>·</span>
+        <span>{post.data.readingTime}</span>
+      </div>
+      <h1>{post.data.title}</h1>
+      <p class="lead">{post.data.description}</p>
+      <div class="author-meta post-meta mt-2">
+        <span>Yazar: {site.teacher}</span>
+        {updated && <span>· Güncelleme: {updated}</span>}
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div class="author-box">
+        <span class="brand-mark" aria-hidden="true">AM</span>
+        <div>
+          <strong>{site.teacher}</strong>
+          <p>
+            Matematik bölümü mezunu, 10 yıllık deneyim. Adana'da yüz yüze,
+            Türkiye geneli online LGS, TYT-AYT ve okul matematiği özel dersi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  {related.length > 0 && (
+    <section class="section" style="background: var(--surface-2);">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Devamı</p>
+          <h2>İlgili yazılar</h2>
+        </div>
+        <div class="blog-grid">
+          {related.map((item) => <PostCard post={item} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CtaBand
+    title="Bu konuyu ders planınızda birlikte çalışalım."
+    text="Sınıf, hedef ve mevcut durumunuzu yazın; seviye tespiti ve plan için dönüş yapalım."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>
