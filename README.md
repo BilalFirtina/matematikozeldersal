@@ -146,7 +146,7 @@ Formda KVKK onayı zorunludur; honeypot alanı vardır.
 - [ ] Net çalışma saatlerini `site.hours`a yaz.
 - [ ] GBP'de ev adresini gizle, hizmet alanlarını 4 ilçe olarak ayarla.
 - [ ] Yandex kaydını sahiplen; olmuyorsa destek talebi aç.
-- [ ] İlk 6 blog yazısını tamamla (şu an 4 var).
+- [ ] İlk 6 blog yazısını tamamla (şu an 5 var).
 - [ ] KVKK/gizlilik/çerez/ders koşullarını hukuk danışmanına kontrol ettir.
 - [ ] `public/og-default.png` görselini marka fotoğrafıyla güncelle (isteğe bağlı).
 

@@ -189,6 +189,25 @@ export const coachingFaqs: Faq[] = [
   },
 ];
 
+export const schoolFaqs: Faq[] = [
+  {
+    q: '5-12. sınıf matematik dersleri kimler için?',
+    a: 'Okul müfredatına paralel destek isteyen, yazılı sınavlara hazırlanan veya temel eksiklerini kapatmak isteyen 5-12. sınıf öğrencileri için.',
+  },
+  {
+    q: 'Okul matematiği ile LGS/TYT-AYT aynı mı?',
+    a: 'Hayır. Okul matematiği müfredat ve yazılı odaklıdır. LGS ve TYT-AYT dersleri sınav formatı, soru tipi ve deneme takibiyle ayrı planlanır.',
+  },
+  {
+    q: 'Yazılı sınavlara hazırlık var mı?',
+    a: 'Evet. Okul takvimine göre konu tekrarı, örnek yazılı soruları ve eksik kapatma planı yapılır.',
+  },
+  {
+    q: 'Okul matematiği online alınabilir mi?',
+    a: 'Evet. Adana’da yüz yüze veya Türkiye geneli online olarak planlanabilir.',
+  },
+];
+
 export const pricingFaqs: Faq[] = [
   {
     q: 'Ücretler neden sitede yazmıyor?',
@@ -222,6 +241,7 @@ export const sssGroups = [
   { title: 'Online ders', faqs: onlineFaqs },
   { title: 'LGS', faqs: lgsFaqs },
   { title: 'TYT-AYT', faqs: [...tytFaqs, ...aytFaqs] },
+  { title: 'Okul matematiği', faqs: schoolFaqs },
   { title: 'Sınav koçluğu', faqs: coachingFaqs },
   { title: 'Ücretler ve koşullar', faqs: pricingFaqs },
 ];

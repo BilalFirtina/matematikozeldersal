@@ -44,6 +44,18 @@ export const programs: Program[] = [
     ],
   },
   {
+    slug: '/okul-matematigi-ozel-ders',
+    title: 'Okul Matematiği',
+    eyebrow: '5-12. sınıf',
+    summary:
+      'Okul müfredatına paralel, yazılı sınavlara ve temel eksik kapatmaya odaklanan birebir destek.',
+    bullets: [
+      'Okul takvimine uygun plan',
+      'Yazılı sınav hazırlığı',
+      'Temel eksikleri kapatma',
+    ],
+  },
+  {
     slug: '/online-matematik-ozel-ders',
     title: 'Online Matematik',
     eyebrow: 'Türkiye geneli',

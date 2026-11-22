@@ -29,6 +29,7 @@ const body = `# ${site.brand}
 - LGS: ${site.url}/lgs-matematik-ozel-ders
 - TYT: ${site.url}/tyt-matematik-ozel-ders
 - AYT: ${site.url}/ayt-matematik-ozel-ders
+- Okul matematiği: ${site.url}/okul-matematigi-ozel-ders
 - Sınav koçluğu: ${site.url}/sinav-koclugu
 - Hakkımda: ${site.url}/hakkimda
 - Ücretler: ${site.url}/ucretler

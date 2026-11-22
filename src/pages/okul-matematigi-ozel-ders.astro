@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FactBox from '../components/FactBox.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewLink from '../components/ReviewLink.astro';
+import { site, waLink } from '../data/site';
+import { schoolFaqs } from '../data/faqs';
+import { webpageSchema, courseSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'Okul Matematiği Özel Ders | 5-12. Sınıf | Adana ve Online';
+const description =
+  "5-12. sınıf okul matematiği özel dersi; müfredata paralel destek, yazılı sınav hazırlığı ve temel eksik kapatma. Adana'da yüz yüze veya online.";
+const path = '/okul-matematigi-ozel-ders';
+
+const schemas = [
+  webpageSchema(path, title, description),
+  courseSchema({
+    name: '5-12. sınıf okul matematiği özel ders',
+    description:
+      'Okul müfredatına paralel birebir matematik desteği; yazılı hazırlığı ve temel eksik kapatma.',
+    path,
+    mode: 'blended',
+    educationalLevel: '5-12. sınıf',
+    teaches: ['Okul matematiği', 'Yazılı sınav hazırlığı', 'Temel matematik', 'Problem çözme'],
+  }),
+  faqSchema(schoolFaqs, path),
+  breadcrumbSchema([
+    { name: 'Ana Sayfa', path: '/' },
+    { name: 'Okul Matematiği', path },
+  ]),
+];
+
+const facts = [
+  { label: 'Sınıflar', value: '5-12. sınıf' },
+  { label: 'Odak', value: 'Okul müfredatı + yazılı hazırlığı' },
+  { label: 'Ders', value: 'Birebir · 60 dakika' },
+  { label: 'Format', value: 'Adana’da yüz yüze veya online' },
+  { label: 'Takip', value: 'Ödev + konu tekrarı + veli bilgisi' },
+  { label: 'Ücret', value: "WhatsApp'tan güncel bilgi" },
+];
+---
+
+<BaseLayout title={title} description={description} canonical={path} schemas={schemas}>
+  <section class="page-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ name: 'Okul Matematiği', path }]} />
+      <p class="eyebrow">5-12. sınıf · Okul desteği</p>
+      <h1>5-12. Sınıf Matematik Özel Ders</h1>
+      <p class="lead">
+        Okul müfredatına paralel birebir destek; yazılı sınav hazırlığı, ödev
+        takibi ve temel eksik kapatma. Adana'da yüz yüze veya online.
+      </p>
+      <div class="btn-group mt-3">
+        <a class="btn btn-primary" href={waLink('Merhaba, okul matematiği özel ders hakkında bilgi almak istiyorum.')} target="_blank" rel="noopener">
+          WhatsApp'tan bilgi al
+        </a>
+        <a class="btn btn-secondary" href="#program">Programı gör</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-sm">
+    <div class="container">
+      <FactBox title="Okul matematiği özeti" items={facts} />
+    </div>
+  </section>
+
+  <section class="section" id="program">
+    <div class="container two-col">
+      <div class="prose">
+        <h2>Okul matematiğinde ne çalışıyoruz?</h2>
+        <p>
+          Okul matematiği, sınav hazırlığından farklı bir ritme sahip. Önce
+          okulun müfredatı ve yazılı takvimi netleşiyor; ardından eksik konular
+          ve ödev düzeni birlikte planlanıyor.
+        </p>
+        <h3>5-8. sınıf</h3>
+        <p>
+          Temel işlemler, kesirler, ondalık sayılar, oran-orantı, cebirsel
+          ifadeler ve geometri gibi konularda okul müfredatına paralel ilerliyoruz.
+          Yazılı sınav öncesi kısa tekrar ve örnek soru çözümü yapılıyor.
+        </p>
+        <h3>9-12. sınıf</h3>
+        <p>
+          Fonksiyonlar, polinomlar, denklemler, trigonometri ve temel analiz
+          konularında okul dersini destekliyoruz. TYT-AYT hedefi varsa ayrı bir
+          sınav planı devreye giriyor.
+        </p>
+        <h3>Yazılı sınav hazırlığı</h3>
+        <p>
+          Okulun yazılı tarihine göre konu tekrarı, örnek yazılı soruları ve
+          eksik kapatma planı yapılıyor. Öğrencinin kendi notları ve okul
+          kaynakları öncelikli.
+        </p>
+        <h3>Ödev ve takip</h3>
+        <p>
+          Her dersin sonunda kısa özet ve ödev paylaşılıyor. Ödevler bir sonraki
+          derste kontrol ediliyor; veliye düzenli bilgi veriliyor.
+        </p>
+      </div>
+      <aside class="card">
+        <h3>Kimler için uygun?</h3>
+        <ul>
+          <li>Okulda konuları takip etmekte zorlananlar.</li>
+          <li>Yazılı sınavlara düzenli hazırlanmak isteyenler.</li>
+          <li>Temel eksiklerini kapatmak isteyen 5-8. sınıflar.</li>
+          <li>9-10. sınıfta temel oluşturmak isteyenler.</li>
+          <li>LGS/TYT-AYT öncesi okul desteği arayanlar.</li>
+        </ul>
+        <p class="form-note">
+          Okul matematiği ile LGS/TYT-AYT programları ayrı planlanır; ihtiyaç
+          varsa birlikte yürütülebilir.
+        </p>
+        <a class="btn btn-secondary btn-sm" href="/yontem">Ders yöntemi</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Süreç</p>
+        <h2>Okul desteği nasıl başlıyor?</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Okul durumu</h3>
+          <p>
+            Sınıf, okul takvimi, son yazılı notları ve zorlanılan konular
+            konuşulur.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Seviye tespiti</h3>
+          <p>
+            Kısa bir test ve soru-cevapla eksik konular belirlenir; öncelik
+            listesi çıkarılır.
+          </p>
+        </div>
+        <div class="step">
+          <h3>Ders ve takip</h3>
+          <p>
+            Haftalık ders, ödev ve yazılı hazırlığı planı başlar; veliyle kısa
+            bilgilendirme yapılır.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <p class="eyebrow">Sınav bağlantısı</p>
+        <h2>Okuldan LGS ve YKS'ye geçiş</h2>
+        <p class="lead">
+          Okul matematiği sağlam bir temel kurar; LGS ve TYT-AYT ise sınav
+          formatı, soru tipi ve deneme takibi ister. İhtiyaç varsa iki plan
+          birlikte yürütülebilir.
+        </p>
+        <div class="btn-group">
+          <a class="btn btn-secondary" href="/lgs-matematik-ozel-ders">LGS</a>
+          <a class="btn btn-secondary" href="/tyt-matematik-ozel-ders">TYT</a>
+          <a class="btn btn-secondary" href="/ayt-matematik-ozel-ders">AYT</a>
+        </div>
+      </div>
+      <ReviewLink />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sıkça sorulanlar</p>
+        <h2>Okul matematiği hakkında</h2>
+      </div>
+      <FaqList faqs={schoolFaqs} />
+    </div>
+  </section>
+
+  <CtaBand
+    title="Okul desteği için gerçekçi bir plan kuralım."
+    text="Sınıf, okul takvimi ve zorlanılan konuları yazın; uygun ders saatini netleştirelim."
+    primaryLabel="WhatsApp'tan yaz"
+  />
+</BaseLayout>
