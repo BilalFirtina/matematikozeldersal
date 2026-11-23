@@ -7,10 +7,15 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "deploy": "wrangler deploy",
+    "worker:dev": "wrangler dev"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.6",
     "astro": "^7.4.13"
+  },
+  "devDependencies": {
+    "wrangler": "^4.166.0"
   }
 }
